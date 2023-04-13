@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
 
 import '../Models/hostelCardModel.dart';
@@ -27,9 +29,9 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
             child: GridTile(
               footer:   GridTileBar(
                   backgroundColor:Colors.black54,
-                  title: const Text('Samel Hostel',
+                  title: Text(Get.arguments['hostelName'],
                style: AppWhiteTextStyle.texth1),
-                    subtitle: const Text('Loc: Tepa Wioso',
+                    subtitle: Text(Get.arguments['hostleInfo'],
                 style: AppWhiteTextStyle.texth2),
                 trailing: OutlinedButton(
                     onPressed: () {},
@@ -38,7 +40,7 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
                         fixedSize: const Size(150, 50),
                         backgroundColor: const Color.fromARGB(255, 66, 76, 168),
                         textStyle: const TextStyle(fontSize: 21)),
-                    child: const Text('Intrested'),
+                    child: const Text('Make Payment'),
           ),
                   ),
               child: ClipRRect(
@@ -46,7 +48,7 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0)),
                 child: Image.asset(
-                  'assets/images/hostel1.jpg',
+                Get.arguments['roomImg'],
                   height: 200.5,
                   fit: BoxFit.cover,
                   ),
@@ -96,7 +98,7 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
                       SizedBox(height: 3.0,),   
                       Text('Hostel Manager@ Samuel Hostel',style: AppBlackTextStyle.texth4),
                         ],
-                            )
+                      )
             ],),
      
             const SizedBox(height: 15,),
@@ -114,10 +116,10 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
               itemCount: getPopularHostles.length,
               itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
               ClipRRect(
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(20.2),bottomRight: Radius.circular(20.0)), // Image border
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.2),bottomRight: Radius.circular(20.0)), // Image border
             child: Image.asset(
               getPopularHostles[itemIndex].hostelImage,
-              height: 20.5,
+              height: 30.5,
               width: double.infinity,
               fit: BoxFit.cover,
               ),
