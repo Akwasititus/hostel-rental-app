@@ -2,14 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:readmore/readmore.dart';
-
 import '../Models/hostelCardModel.dart';
 import '../utils/constants.dart';
 
 class Detail extends StatelessWidget {
-  const Detail({super.key});
+   
+  const Detail({super.key,});
 
 
 final String readmoreText = "Flutter is Googles mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.Flutter is Googles mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the   ";
@@ -17,21 +16,35 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
        
   @override
   Widget build(BuildContext context) {
-    var deviceSize = MediaQuery.of(context).size;
+    var deviceSize = MediaQuery.of(context).size; 
     return Scaffold(
+      backgroundColor: const Color(0xFFcbe6f6),
      body: SingleChildScrollView(
        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         
         children: [
+          
      
           SizedBox(
             height: 300,
             child: GridTile(
+              header: GridTileBar(
+                leading: IconButton(
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.black,),
+                      onPressed: () {
+                        Get.back();
+                      },
+                    ),
+              ),
               footer:   GridTileBar(
                   backgroundColor:Colors.black54,
-                  title: Text(Get.arguments['hostelName'],
+                  title: Text(Get.arguments['hostelsName'],
+                  
                style: AppWhiteTextStyle.texth1),
-                    subtitle: Text(Get.arguments['hostleInfo'],
+                    subtitle: Text(Get.arguments['hostelLocation'],
                 style: AppWhiteTextStyle.texth2),
                 trailing: OutlinedButton(
                     onPressed: () {},
@@ -39,7 +52,7 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
                         foregroundColor: Colors.white,
                         fixedSize: const Size(150, 50),
                         backgroundColor: const Color.fromARGB(255, 66, 76, 168),
-                        textStyle: const TextStyle(fontSize: 21)),
+                        textStyle: const TextStyle(fontSize: 17)),
                     child: const Text('Make Payment'),
           ),
                   ),
@@ -47,11 +60,20 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0)),
-                child: Image.asset(
-                Get.arguments['roomImg'],
-                  height: 200.5,
-                  fit: BoxFit.cover,
+                child: Hero(
+                   tag: 'hostelImage',
+                   
+                  child: Material(
+                    
+                    elevation: 0,
+                    child: Image.asset(Get.arguments['imgURL'],
+                    
+                      height: 200.5,
+                      fit: BoxFit.cover,
+                      ),
+                      
                   ),
+                ),
               ),
             ),
           ),
@@ -59,7 +81,7 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: deviceSize.width * 0.05,
-              vertical: deviceSize.height * 0.05
+              vertical: deviceSize.height * 0.03
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,12 +135,13 @@ final String readmoreText = "Flutter is Googles mobile UI open source framework 
               aspectRatio: 2.0,
               initialPage: 2,
           ),
-              itemCount: getPopularHostles.length,
+              itemCount: getAllHostles.length,
               itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
               ClipRRect(
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.2),bottomRight: Radius.circular(20.0)), // Image border
             child: Image.asset(
-              getPopularHostles[itemIndex].hostelImage,
+             Get.arguments['imgURL'],
+             // getPopularHostles[itemIndex].hostelImage,
               height: 30.5,
               width: double.infinity,
               fit: BoxFit.cover,

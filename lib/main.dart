@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'MotherPage/mother_page.dart';
 import 'Screens/detailPage.dart';
 import 'Screens/home.dart';
 
@@ -18,11 +19,11 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
-      title: 'welcome to my HostelRent',
+      title: 'Welcome to my HostelRent',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHome(),
+      home: const NavigationHome(),
     );
   }
 }

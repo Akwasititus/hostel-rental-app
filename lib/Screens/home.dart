@@ -16,7 +16,7 @@ class _MyHomeState extends State<MyHome> {
                               
   final List<Widget> _hostels = [
   
-            const UENR(),
+             UENR(),
             Container(
               child: Text('Child 2'),
             ),
@@ -46,7 +46,7 @@ class _MyHomeState extends State<MyHome> {
 
         Expanded(
           child: TabContainer(
-          color: Colors.amber,
+          color: const Color(0xFFcbe6f6),
           childCurve: Curves.easeInCirc,
           tabDuration: const Duration(milliseconds: 500),
           tabs: _schools,

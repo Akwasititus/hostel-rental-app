@@ -12,7 +12,8 @@ import '../detailPage.dart';
 
 
 class UENR extends StatefulWidget {
-  const UENR({super.key});
+  
+   UENR({super.key});
 
   @override
   State<UENR> createState() => _UENRState();
@@ -21,6 +22,7 @@ class UENR extends StatefulWidget {
 class _UENRState extends State<UENR> {
 
   bool favoriteColor = false;
+  
   @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
@@ -96,7 +98,7 @@ class _UENRState extends State<UENR> {
             Expanded(child: Container()),
             Text('more',style: TextStyle(
                         fontSize: 12,
-                        color: Colors.grey.shade200,
+                        color: Colors.grey.shade700,
                       fontFamily: 'Ubuntu-Regular'
                       )),
           ],
@@ -104,59 +106,66 @@ class _UENRState extends State<UENR> {
         const SizedBox(height: 10.0,),
         SizedBox(
           height: 250,
-          child: ListView.builder(
-          itemCount: getPopularHostles.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context,index){
-            return Padding(
-          padding: const EdgeInsets.all(7.0),
-          child: GestureDetector(
-            onTap: (){
-              Get.to(const Detail(), arguments: {
-                'roomImg': getPopularHostles[index].hostelImage,
-                'hostelName': getPopularHostles[index].hostelName.toString(),
-                'hostleInfo': getPopularHostles[index].hostleInfo.toString(),
-                
-              });
-            },
-            child: Container(
-              height: 100,
-              width: 200,
-                decoration: BoxDecoration(
-                  color: Colors.redAccent,
-                  borderRadius: BorderRadius.circular(20.0),
+          child: Hero(
+            tag: 'hostelImage',
+            child: ListView.builder(
+            itemCount: getAllHostles.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context,index){
+               
+              return Padding(
+            padding: const EdgeInsets.all(7.0),
+            child: GestureDetector(
+              onTap: (){
+                Get.to( const Detail(), arguments: {
+                  'hostelsName': getAllHostles[index].hostelName.toString(),
+                  'hostelLocation': getAllHostles[index].hostelLocation.toString(),
+                  'imgURL': getAllHostles[index].hostelImage,
+                  
+                });
+              },
+              child: Container(
+                height: 100,
+                width: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: GridTile(
+                    header: GridTileBar(
+                      trailing:  IconButton(
+                          icon: Icon(Icons.favorite,color: favoriteColor? 
+                          Colors.red:
+                          Colors.white),
+                          onPressed: () {
+                            setState(() {
+                              
+                              favoriteColor = !favoriteColor;
+                            });
+                            /* Add to Favarate */
+                          },
+                        ),
+                    ),
+                    footer: GridTileBar(
+                    backgroundColor:Colors.black54,
+                    title: Text(getAllHostles[index].hostelName,
+                     style: AppWhiteTextStyle.texth1),
+                      subtitle: Text(getAllHostles[index].hostleInfo,
+                      style: AppWhiteTextStyle.texth2),
+                    ),
+                  child: ClipRRect(
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20.2),topRight: Radius.circular(20.0)), // Image border
+                  child: Image.asset(
+                    getAllHostles[index].hostelImage,
+                    height: 20.5,
+                    fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                child: GridTile(
-                  header: GridTileBar(
-                    trailing:  IconButton(
-                        icon: Icon(Icons.favorite,color: favoriteColor? Colors.white:Colors.red),
-                        onPressed: () {
-                          setState(() {
-                            favoriteColor = favoriteColor;
-                          });
-                          /* Add to Favarate */
-                        },
-                      ),
-                  ),
-                  footer: GridTileBar(
-                  backgroundColor:Colors.black54,
-                  title: Text(getPopularHostles[index].hostelName,
-                   style: AppWhiteTextStyle.texth1),
-                    subtitle: Text(getPopularHostles[index].hostleInfo,
-                    style: AppWhiteTextStyle.texth2),
-                  ),
-                child: ClipRRect(
-                borderRadius: const BorderRadius.only(topLeft: Radius.circular(20.2),topRight: Radius.circular(20.0)), // Image border
-                child: Image.asset(
-                  getPopularHostles[index].hostelImage,
-                  height: 20.5,
-                  fit: BoxFit.cover,
-                  ),
                 ),
-              ),
-              ),
-          ));
-          },),),
+            ));
+            },),
+          ),),
         
         
            const SizedBox(height: 15,),
@@ -165,11 +174,22 @@ class _UENRState extends State<UENR> {
         SizedBox(
           height: 300,
           child: ListView.builder(
-            itemCount: getResentHostels.length,
+            itemCount: getAllHostles.length,
             itemBuilder: (context,index){
+              //final hostel = getAllHostles[index];
           return GestureDetector(
             onTap: (){
-              Get.to(const Detail(), arguments: index);
+              
+              Get.to( const Detail(), arguments: {
+                'hostelsName': getAllHostles[index].hostelName.toString(),
+                'hostelLocation': getAllHostles[index].hostelLocation.toString(),
+                'imgURL': getAllHostles[index].hostelImage,
+              });
+
+             
+              
+              
+             
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -180,29 +200,35 @@ class _UENRState extends State<UENR> {
                   borderRadius: BorderRadius.circular(10.0),
                   color: Colors.grey.shade100,
                 ),
-                child: ListTile(
-                  title: Text(getResentHostels[index].hostelName,
-                  style: AppBlackTextStyle.texth1
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 7),
-                      Text(getResentHostels[index].hostelLocation,
-                      style: AppBlackTextStyle.texth2),
-                      const SizedBox(height: 7,),
-                      Text(getResentHostels[index].roomInfo,
-                      style: AppBlackTextStyle.texth2
-                      )
-                    ],
-                  ),
-                  leading: ClipRRect(
-                borderRadius: BorderRadius.circular(5), // Image border
-                child: Image.asset(
-                    getResentHostels[index].imgURL,
-                    fit: BoxFit.cover,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: ListTile(
+                    title: Text(getAllHostles[index].hostelName,
+                    style: AppBlackTextStyle.texth1
                     ),
-                ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 7),
+                        Text(getAllHostles[index].hostelLocation,
+                        style: AppBlackTextStyle.texth2),
+                        const SizedBox(height: 7,),
+                        Text(getAllHostles[index].hostleInfo,
+                        style: AppBlackTextStyle.texth2
+                        )
+                      ],
+                    ),
+                    leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(5), // Image border
+                  child: Hero(
+                     tag: 'hostelImage',
+                    child: Image.asset(
+                        getAllHostles[index].hostelImage,
+                        fit: BoxFit.cover,
+                        ),
+                  ),
+                  ),
+                  ),
                 ),
               ),
             ),
@@ -215,6 +241,7 @@ class _UENRState extends State<UENR> {
           ),
         ),
       floatingActionButton: FloatingActionButton(
+        
         child: IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {

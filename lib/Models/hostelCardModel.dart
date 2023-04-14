@@ -1,41 +1,70 @@
-import 'package:flutter/material.dart';
 
-class PopularHostles{
+class AllHostels{
 final String hostelImage;
 final String hostelName;
 final String hostleInfo;
+final String hostelLocation;
 
-PopularHostles({
-required this.hostelImage,
-required this.hostelName,
-required this.hostleInfo,});
+AllHostels(this.hostleInfo, 
+ {required this.hostelImage,
+  required this.hostelName, 
+  required this.hostelLocation
+  
+  });
 }
 
-List<PopularHostles> getPopularHostles = [
-  PopularHostles(
+List<AllHostels> getAllHostles = [
+  AllHostels(
     hostelImage: 'assets/images/hostel1.jpg', 
-    hostelName: 'GetFund Hostel', 
-    hostleInfo: 'Loc: Fiapre',
+    hostelName: 'titus Hostel', 
+    'More Info',
+    hostelLocation: 'Loc: Fiapre',
     ),
-    PopularHostles(
-    hostelImage: 'assets/images/hostel3.jpg', 
-    hostelName: 'GetFund Hoste3', 
-    hostleInfo: 'Loc: Fiapre',
-    ),
-    PopularHostles(
+
+    AllHostels(
     hostelImage: 'assets/images/hostel1.jpg', 
-    hostelName: 'GetFund Hostel', 
-    hostleInfo: 'Loc: Fiapre',
+    hostelName: 'Danny Hostel', 
+    hostelLocation: 'Loc: Kumasi',
+     'More more info',
     ),
-    PopularHostles(
-    hostelImage: 'assets/images/hostel3.jpg', 
-    hostelName: 'GetFund Hostel', 
-    hostleInfo: 'Loc: Fiapre',
-    ),
-    PopularHostles(
+
+    AllHostels(
     hostelImage: 'assets/images/hostel1.jpg', 
-    hostelName: 'GetFund Hostel', 
-    hostleInfo: 'Loc: Fiapre',
+    hostelName: 'My Hostel', 
+    hostelLocation: 'Loc: Abrokyere',
+    'more and more and more',
     ),
-    
 ];
+
+
+
+
+// AllHostels(
+//     hostelImage: 'assets/images/hostel1.jpg', 
+//     hostelName: 'GetFund Hostel', 
+//     hostleInfo: 'Loc: Fiapre',
+//     ),
+
+//     AllHostels(
+//     hostelImage: 'assets/images/hostel1.jpg', 
+//     hostelName: 'oTaw Hostel', 
+//     hostleInfo: 'Loc: Fiapre',
+//     ),
+
+//     AllHostels(
+//     hostelImage: 'assets/images/hostel1.jpg', 
+//     hostelName: 'Zinko Hostel', 
+//     hostleInfo: 'Loc: zinko',
+//     ),
+
+//     AllHostels(
+//     hostelImage: 'assets/images/hostel1.jpg', 
+//     hostelName: 'Notridam Hostel', 
+//     hostleInfo: 'Loc: Notridam',
+//     ),
+
+//     AllHostels(
+//     hostelImage: 'assets/images/hostel1.jpg', 
+//     hostelName: 'SamueL Hostel', 
+//     hostleInfo: 'Loc: Tolbot',
+//     ),

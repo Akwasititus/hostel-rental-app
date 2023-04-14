@@ -17,7 +17,7 @@ class AppWhiteTextStyle {
 class AppBlackTextStyle {
   
   static const textpBlack =
-      TextStyle(fontSize: 10, fontFamily: 'Ubuntu-Regular', color: Colors.black);
+      TextStyle(fontSize: 12, fontFamily: 'Ubuntu-Regular', color: Colors.black);
   
   static const texth1 =
       TextStyle(fontSize: 15, fontFamily: 'Ubuntu-Regular',fontWeight: FontWeight.w700, color: Colors.black);
