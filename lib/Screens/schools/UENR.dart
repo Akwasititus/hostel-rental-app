@@ -119,7 +119,7 @@ class _UENRState extends State<UENR> {
                   'hostelsName': getAllHostles[index].hostelName.toString(),
                   'hostelLocation': getAllHostles[index].hostelLocation.toString(),
                   'imgURL': getAllHostles[index].hostelImage,
-                  'amount': getAllHostles[index].amount.toString()
+                  'amount': getAllHostles[index].numberOfRoomsAvailable.toString()
                   
                 });
               },
@@ -161,10 +161,11 @@ class _UENRState extends State<UENR> {
                      style: AppWhiteTextStyle.texth1),
                       subtitle: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(getAllHostles[index].hostleInfo,
+                          Text(getAllHostles[index].hostelLocation,
                           style: AppWhiteTextStyle.texth2),
-                          Text(getAllHostles[index].amount,
+                          Text(getAllHostles[index].numberOfRoomsAvailable,
                           style: AppWhiteTextStyle.texth2),
                         ],
                       ),
@@ -192,7 +193,6 @@ class _UENRState extends State<UENR> {
           child: ListView.builder(
             itemCount: getAllHostles.length,
             itemBuilder: (context,index){
-              //final hostel = getAllHostles[index];
           return GestureDetector(
             onTap: (){
               
@@ -200,7 +200,7 @@ class _UENRState extends State<UENR> {
                 'hostelsName': getAllHostles[index].hostelName.toString(),
                 'hostelLocation': getAllHostles[index].hostelLocation.toString(),
                 'imgURL': getAllHostles[index].hostelImage,
-                'amount': getAllHostles[index].amount.toString()
+                'amount': getAllHostles[index].numberOfRoomsAvailable.toString()
               });
             },
             child: Padding(
@@ -221,14 +221,17 @@ class _UENRState extends State<UENR> {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 7),
+                         const SizedBox(height: 10),
                         Text(getAllHostles[index].hostelLocation,
                         style: AppBlackTextStyle.texth2),
-                        const SizedBox(height: 7,),
-                        Text(getAllHostles[index].hostleInfo,
-                        style: AppBlackTextStyle.texth2
-                        ),
-                        Text(getAllHostles[index].amount,
+                        // const SizedBox(height: 7,),
+
+                        //TODO: we no go to pass the info here but rather at the detail page
+                        
+                        // Text(getAllHostles[index].hostleInfo,
+                        // style: AppBlackTextStyle.texth2
+                        // ),
+                        Text(getAllHostles[index].numberOfRoomsAvailable,
                         style: AppBlackTextStyle.texth2
                         ),
                       ],

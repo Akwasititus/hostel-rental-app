@@ -10,10 +10,6 @@ class Detail extends StatelessWidget {
    
   const Detail({super.key,});
 
-
-
-       
-       
   @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size; 
@@ -48,7 +44,6 @@ class Detail extends StatelessWidget {
                 footer:   GridTileBar(
                     backgroundColor:Colors.black54,
                     title: Text(Get.arguments['hostelsName'],
-                    
                  style: AppWhiteTextStyle.texth1),
                       subtitle: Text(Get.arguments['hostelLocation'],
                   style: AppWhiteTextStyle.texth2),
@@ -59,14 +54,8 @@ class Detail extends StatelessWidget {
                           fixedSize: const Size(150, 50),
                           backgroundColor: const Color(0xFFcbe6f6),
                           textStyle: const TextStyle(fontSize: 17)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                           const Text('Make Payment'),
-                          Text(Get.arguments['amount'],
-                          style: AppWhiteTextStyle.texth2)
-                        ],
-                      ),
+                      child: const Text('Make Payment',
+                           style: AppBlackTextStyle.texth1),
             ),
                     ),
                 child: ClipRRect(
