@@ -40,22 +40,24 @@ class _MyHomeState extends State<MyHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    body: Column(
-      children: [
-
-        Expanded(
-          child: TabContainer(
-          color: const Color(0xFFcbe6f6),
-          childCurve: Curves.easeInCirc,
-          tabDuration: const Duration(milliseconds: 500),
-          tabs: _schools,
-          children: _hostels,
-        ),
-        ),
-      
-    ]),
+    return SafeArea(
+      child: Scaffold(
+      body: Column(
+        children: [
     
+          Expanded(
+            child: TabContainer(
+            color: const Color(0xFFcbe6f6),
+            childCurve: Curves.easeInCirc,
+            tabDuration: const Duration(milliseconds: 500),
+            tabs: _schools,
+            children: _hostels,
+          ),
+          ),
+        
+      ]),
+      
+      ),
     );
   }
 }

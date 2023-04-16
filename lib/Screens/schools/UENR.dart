@@ -13,7 +13,7 @@ import '../detailPage.dart';
 
 class UENR extends StatefulWidget {
   
-   UENR({super.key});
+   const UENR({super.key});
 
   @override
   State<UENR> createState() => _UENRState();
@@ -32,7 +32,7 @@ class _UENRState extends State<UENR> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: deviceSize.width * 0.05,
+              horizontal: deviceSize.width * 0.03,
               vertical: deviceSize.height * 0.03
               ),
             child: Column(
@@ -43,21 +43,20 @@ class _UENRState extends State<UENR> {
                      Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
-                         Text('Welcome Titus 👋',
+                         Text('Welcome Suleman 👋',
                         style: AppBlackTextStyle.textpBlack
                       ),
-                      Text('Choose your Hostel',
+                      Text('Looking for a Place to Stay?',
                       style: AppBlackTextStyle.texth1
                     ),
                       ],
                      ),
                      Expanded(child: Container()),
                      const ProfilePicture(
-                      name: 'Akwasi Titus',
+                      name: 'Johnson Suleman',
                       tooltip: true,
                       role: 'Student',
                       radius: 30,
-                      img: 'assets/images/rasta.jpg',
                        fontsize: 21,
                         ),
                      
@@ -112,7 +111,6 @@ class _UENRState extends State<UENR> {
             itemCount: getAllHostles.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context,index){
-               
               return Padding(
             padding: const EdgeInsets.all(7.0),
             child: GestureDetector(
@@ -121,6 +119,7 @@ class _UENRState extends State<UENR> {
                   'hostelsName': getAllHostles[index].hostelName.toString(),
                   'hostelLocation': getAllHostles[index].hostelLocation.toString(),
                   'imgURL': getAllHostles[index].hostelImage,
+                  'amount': getAllHostles[index].amount.toString()
                   
                 });
               },
@@ -128,30 +127,47 @@ class _UENRState extends State<UENR> {
                 height: 100,
                 width: 200,
                   decoration: BoxDecoration(
-                    color: Colors.redAccent,
+                    color: const Color(0xFFcbe6f6),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: GridTile(
                     header: GridTileBar(
-                      trailing:  IconButton(
-                          icon: Icon(Icons.favorite,color: favoriteColor? 
-                          Colors.red:
-                          Colors.white),
-                          onPressed: () {
-                            setState(() {
-                              
-                              favoriteColor = !favoriteColor;
-                            });
-                            /* Add to Favarate */
-                          },
+                      trailing:  Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius: BorderRadius.circular(15.0)
+                          ),
+                          child: IconButton(
+                              icon: Icon(Icons.favorite,color: favoriteColor? 
+                              Colors.red:
+                              Colors.white),
+                              onPressed: () {
+                                setState(() {
+                                  favoriteColor = !favoriteColor;
+                                });
+                                /* Add to Favarate */
+                              },
+                            ),
                         ),
+                      ),
                     ),
                     footer: GridTileBar(
                     backgroundColor:Colors.black54,
                     title: Text(getAllHostles[index].hostelName,
                      style: AppWhiteTextStyle.texth1),
-                      subtitle: Text(getAllHostles[index].hostleInfo,
-                      style: AppWhiteTextStyle.texth2),
+                      subtitle: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(getAllHostles[index].hostleInfo,
+                          style: AppWhiteTextStyle.texth2),
+                          Text(getAllHostles[index].amount,
+                          style: AppWhiteTextStyle.texth2),
+                        ],
+                      ),
                     ),
                   child: ClipRRect(
                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(20.2),topRight: Radius.circular(20.0)), // Image border
@@ -184,12 +200,8 @@ class _UENRState extends State<UENR> {
                 'hostelsName': getAllHostles[index].hostelName.toString(),
                 'hostelLocation': getAllHostles[index].hostelLocation.toString(),
                 'imgURL': getAllHostles[index].hostelImage,
+                'amount': getAllHostles[index].amount.toString()
               });
-
-             
-              
-              
-             
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -215,7 +227,10 @@ class _UENRState extends State<UENR> {
                         const SizedBox(height: 7,),
                         Text(getAllHostles[index].hostleInfo,
                         style: AppBlackTextStyle.texth2
-                        )
+                        ),
+                        Text(getAllHostles[index].amount,
+                        style: AppBlackTextStyle.texth2
+                        ),
                       ],
                     ),
                     leading: ClipRRect(
@@ -228,6 +243,25 @@ class _UENRState extends State<UENR> {
                         ),
                   ),
                   ),
+                  trailing: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFcbe6f6),
+                            borderRadius: BorderRadius.circular(15.0)
+                          ),
+                          child: IconButton(
+                              icon: Icon(Icons.favorite,color: favoriteColor? 
+                              Colors.red:
+                              Colors.white),
+                              onPressed: () {
+                                setState(() {
+                                  favoriteColor = !favoriteColor;
+                                });
+                                /* Add to Favarate */
+                              },
+                            ),
+                        ),
                   ),
                 ),
               ),

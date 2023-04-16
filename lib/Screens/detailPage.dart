@@ -11,154 +11,160 @@ class Detail extends StatelessWidget {
   const Detail({super.key,});
 
 
-final String readmoreText = "Flutter is Googles mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.Flutter is Googles mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the   ";
+
        
        
   @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size; 
-    return Scaffold(
-      backgroundColor: const Color(0xFFcbe6f6),
-     body: SingleChildScrollView(
-       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        
-        children: [
-          
-     
-          SizedBox(
-            height: 300,
-            child: GridTile(
-              header: GridTileBar(
-                leading: IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: Colors.black,),
-                      onPressed: () {
-                        Get.back();
-                      },
-                    ),
-              ),
-              footer:   GridTileBar(
-                  backgroundColor:Colors.black54,
-                  title: Text(Get.arguments['hostelsName'],
-                  
-               style: AppWhiteTextStyle.texth1),
-                    subtitle: Text(Get.arguments['hostelLocation'],
-                style: AppWhiteTextStyle.texth2),
-                trailing: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        fixedSize: const Size(150, 50),
-                        backgroundColor: const Color.fromARGB(255, 66, 76, 168),
-                        textStyle: const TextStyle(fontSize: 17)),
-                    child: const Text('Make Payment'),
-          ),
-                  ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10.0),
-                  topRight: Radius.circular(10.0)),
-                child: Hero(
-                   tag: 'hostelImage',
-                   
-                  child: Material(
-                    
-                    elevation: 0,
-                    child: Image.asset(Get.arguments['imgURL'],
-                    
-                      height: 200.5,
-                      fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xFFcbe6f6),
+       body: SingleChildScrollView(
+         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 300,
+              child: GridTile(
+                header: GridTileBar(
+                  leading: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFcbe6f6),
+                            borderRadius: BorderRadius.circular(15.0)
+                          ),
+                          child: IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: Colors.black,),
+                        onPressed: () {
+                          Get.back();
+                        },
                       ),
-                      
+                        ),
+                ),
+                footer:   GridTileBar(
+                    backgroundColor:Colors.black54,
+                    title: Text(Get.arguments['hostelsName'],
+                    
+                 style: AppWhiteTextStyle.texth1),
+                      subtitle: Text(Get.arguments['hostelLocation'],
+                  style: AppWhiteTextStyle.texth2),
+                  trailing: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          fixedSize: const Size(150, 50),
+                          backgroundColor: const Color(0xFFcbe6f6),
+                          textStyle: const TextStyle(fontSize: 17)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                           const Text('Make Payment'),
+                          Text(Get.arguments['amount'],
+                          style: AppWhiteTextStyle.texth2)
+                        ],
+                      ),
+            ),
+                    ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0)),
+                  child: Hero(
+                     tag: 'hostelImage',
+                    child: Material(
+                      elevation: 0,
+                      child: Image.asset(Get.arguments['imgURL'],
+                        height: 200.5,
+                        fit: BoxFit.cover,
+                        ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-     
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: deviceSize.width * 0.05,
-              vertical: deviceSize.height * 0.03
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-               
-              const Text('Details',style: AppBlackTextStyle.texth2),
-        
-              const SizedBox(height: 5.0,),
-     
-              ReadMoreText(readmoreText, 
-              trimLines: 2,
-              colorClickableText: Colors.pink,
-              trimMode: TrimMode.Line,
-              trimCollapsedText: 'read more',
-              trimExpandedText: '...Show less',
-              style: AppBlackTextStyle.texth3,
-              lessStyle: const TextStyle(fontWeight: FontWeight.bold),
-              moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: deviceSize.width * 0.05,
+                vertical: deviceSize.height * 0.03
             ),
-     
-            const SizedBox(height: 10.0,),
-     
-            Row(children: [
-                  const ProfilePicture(
-                      name: 'Akwasi Titus',
-                      tooltip: true,
-                      radius: 31,
-                      role: 'Hostel Manager',
-                       fontsize: 21,
-                        ),
-                        const SizedBox(width: 10.0,),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                      Text('TITUS Akwasi',style: AppBlackTextStyle.texth2),
-                      SizedBox(height: 3.0,),   
-                      Text('Hostel Manager@ Samuel Hostel',style: AppBlackTextStyle.texth4),
-                        ],
-                      )
-            ],),
-     
-            const SizedBox(height: 15,),
-
-            const Text('More Rooms',style: AppBlackTextStyle.texth2),
-            const SizedBox(height: 5,),
-            CarouselSlider.builder(
-              options: CarouselOptions(
-              autoPlay: true,
-              enlargeCenterPage: true,
-              viewportFraction: 0.9,
-              aspectRatio: 2.0,
-              initialPage: 2,
-          ),
-              itemCount: getAllHostles.length,
-              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-              ClipRRect(
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.2),bottomRight: Radius.circular(20.0)), // Image border
-            child: Image.asset(
-             Get.arguments['imgURL'],
-             // getPopularHostles[itemIndex].hostelImage,
-              height: 30.5,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [   
+                const Text('Details',style: AppBlackTextStyle.texth2),
+                const SizedBox(height: 5.0,),
+                const ReadMoreText(readmoreText, 
+                trimLines: 2,
+                colorClickableText: Colors.pink,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'read more',
+                trimExpandedText: '...Show less',
+                style: AppBlackTextStyle.texth3,
+                lessStyle: TextStyle(fontWeight: FontWeight.bold),
+                moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
+       
+              const SizedBox(height: 10.0,),
+       
+              Row(children: [
+                    const ProfilePicture(
+                        name: 'Titus Akwasi ',
+                        tooltip: true,
+                        radius: 25,
+                        role: 'Hostel Manager',
+                         fontsize: 21,
+                          ),
+                          const SizedBox(width: 10.0,),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:   [
+                        const Text('TITUS Akwasi',style: AppBlackTextStyle.texth2),
+                        const SizedBox(height: 3.0,),   
+                        Row(
+                          children: [
+                            const Text('Hostel Manager@ ',style: AppBlackTextStyle.texth4),
+                            Text(Get.arguments['hostelsName'])
+                          ],
+                        ),
+                          ],
+                        )
+              ],),
+       
+              const SizedBox(height: 15,),
+    
+              const Text('More Rooms',style: AppBlackTextStyle.texth2),
+              const SizedBox(height: 5,),
+              CarouselSlider.builder(
+                options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+                viewportFraction: 0.9,
+                aspectRatio: 2.0,
+                initialPage: 2,
             ),
-     )
-            
-           
-        
-            ],
-          ),
-        )
-          
-     
-        ],
+                itemCount: getAllHostles.length,
+                itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+                ClipRRect(
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.2),bottomRight: Radius.circular(20.0)), // Image border
+              child: Image.asset(
+               Get.arguments['imgURL'],
+               // getPopularHostles[itemIndex].hostelImage,
+                height: 50.5,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                ),
+              ),
+       )
+              ],
+            ),
+          )
+          ],
+         ),
        ),
-     ),
+      ),
     );
   }
 }
