@@ -16,24 +16,30 @@ class _MyHomeState extends State<MyHome> {
                               
   final List<Widget> _hostels = [
   
-             UENR(),
+             const UENR(),
             Container(
-              child: Text('Child 2'),
+              child:  Center(child: Column(
+                children: const [
+                  CircularProgressIndicator(),
+                  Text('Content Loading Soon'),
+
+                ],
+              )),
             ),
             Container(
-              child: Text('Child 3'),
+              child: const Text('Child 3'),
             ),
             Container(
-              child: Text('Child 4'),
+              child: const Text('Child 4'),
             ),
             Container(
-              child: Text('Child 5'),
+              child: const Text('Child 5'),
             ),
             Container(
-              child: Text('Child 6'),
+              child: const Text('Child 6'),
             ),
             Container(
-              child: Text('Child 7'),
+              child: const Text('Child 7'),
             ),
           ];
   

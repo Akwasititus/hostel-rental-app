@@ -5,14 +5,23 @@ import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 import '../Models/hostelCardModel.dart';
 import '../utils/constants.dart';
+import '../utils/widgets/buttons.dart';
 
-class Detail extends StatelessWidget {
+class Detail extends StatefulWidget {
    
   const Detail({super.key,});
 
   @override
+  State<Detail> createState() => _DetailState();
+}
+
+class _DetailState extends State<Detail> {
+
+ 
+  @override
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size; 
+    final hostelsArguments = Get.arguments;
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFcbe6f6),
@@ -43,12 +52,14 @@ class Detail extends StatelessWidget {
                 ),
                 footer:   GridTileBar(
                     backgroundColor:Colors.black54,
-                    title: Text(Get.arguments['hostelsName'],
+                    title: Text(hostelsArguments['hostelsName'],
                  style: AppWhiteTextStyle.texth1),
-                      subtitle: Text(Get.arguments['hostelLocation'],
+                      subtitle: Text(hostelsArguments['hostelLocation'],
                   style: AppWhiteTextStyle.texth2),
                   trailing: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showMyDialog();
+                      },
                       style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.white,
                           fixedSize: const Size(150, 50),
@@ -66,7 +77,7 @@ class Detail extends StatelessWidget {
                      tag: 'hostelImage',
                     child: Material(
                       elevation: 0,
-                      child: Image.asset(Get.arguments['imgURL'],
+                      child: Image.asset(hostelsArguments['imgURL'],
                         height: 200.5,
                         fit: BoxFit.cover,
                         ),
@@ -83,7 +94,7 @@ class Detail extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [   
-                const Text('Details',style: AppBlackTextStyle.texth2),
+                const Text('Details',style: AppBlackTextStyle.texth1),
                 const SizedBox(height: 5.0,),
                 const ReadMoreText(readmoreText, 
                 trimLines: 2,
@@ -115,7 +126,7 @@ class Detail extends StatelessWidget {
                         Row(
                           children: [
                             const Text('Hostel Manager@ ',style: AppBlackTextStyle.texth4),
-                            Text(Get.arguments['hostelsName'])
+                            Text(hostelsArguments['hostelsName'],style: AppBlackTextStyle.texth4)
                           ],
                         ),
                           ],
@@ -124,7 +135,7 @@ class Detail extends StatelessWidget {
        
               const SizedBox(height: 15,),
     
-              const Text('More Rooms',style: AppBlackTextStyle.texth2),
+              const Text('Other Rooms',style: AppBlackTextStyle.texth1),
               const SizedBox(height: 5,),
               CarouselSlider.builder(
                 options: CarouselOptions(
@@ -139,7 +150,7 @@ class Detail extends StatelessWidget {
                 ClipRRect(
               borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.2),bottomRight: Radius.circular(20.0)), // Image border
               child: Image.asset(
-               Get.arguments['imgURL'],
+               hostelsArguments['imgURL'],
                // getPopularHostles[itemIndex].hostelImage,
                 height: 50.5,
                 width: double.infinity,
@@ -156,6 +167,25 @@ class Detail extends StatelessWidget {
       ),
     );
   }
+
+   void showMyDialog() {
+  Get.dialog(
+    AlertDialog(
+      title: const Text('Please Choose an Option'),
+      content: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Buttons(btnName: 'One in a Room', clickMe: () {  }, hostelAmount: '\$1,200',),
+          Buttons(btnName: 'Two in a Room', clickMe: () {  }, hostelAmount: '\$2,700',),
+          Buttons(btnName: 'Three in a Room', clickMe: () {  }, hostelAmount: '\$9,200',),
+          Buttons(btnName: 'Four in a Room', clickMe: () {  }, hostelAmount: '\$4,300',),
+        ],
+      ),
+      
+    ),
+  );
+}
+
 }
 
 

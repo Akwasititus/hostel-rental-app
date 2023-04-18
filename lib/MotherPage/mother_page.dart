@@ -62,6 +62,11 @@ class _NavigationHomeState extends State<NavigationHome> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: (){
+          //print('Presesd');
+        }),
     );
   }
 }
