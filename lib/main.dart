@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'MotherPage/mother_page.dart';
-import 'Screens/detailPage.dart';
-import 'Screens/home.dart';
+
 
 void main() {
   runApp(const MyApp());

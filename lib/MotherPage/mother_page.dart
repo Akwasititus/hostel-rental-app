@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../Screens/home.dart';
+import '../admin_page/AdminLoginPage.dart';
 import 'homestels.dart';
 
 
@@ -65,7 +67,7 @@ class _NavigationHomeState extends State<NavigationHome> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: (){
-          //print('Presesd');
+          Get.to(const AdminLogin(),duration: Duration(seconds: 1),transition: Transition.native);
         }),
     );
   }

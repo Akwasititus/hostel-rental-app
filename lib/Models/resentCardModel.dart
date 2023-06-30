@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ResentHostels {
   final String imgURL;
   final String hostelsName;

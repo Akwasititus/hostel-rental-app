@@ -1,75 +1,100 @@
+import '../utils/constants.dart';
 
-class AllHostels{
-final String hostelImage;
-final String hostelName;
-final String hostleInfo;
-final String hostelLocation;
-final String numberOfRoomsAvailable;
-bool favIcon; // how do i call this in my widget
+class AllHostels {
+  final String hostelImage;
+  final String hostelName;
+  final String hostleInfo;
+  //final List amountt;
+  final String hostelLocation;
+  final List hostelRooms;
+  final String numberOfRoomsAvailable;
+  bool favIcon; // how do i call this in my widget
 
-AllHostels(this.hostleInfo,this.favIcon,
- {required this.hostelImage,
-  required this.hostelName, 
-  required this.hostelLocation,
-  required this.numberOfRoomsAvailable,
-  
-  
+  AllHostels(
+    this.favIcon, {
+    required this.hostelImage,
+    required this.hostelName,
+    required this.hostelRooms,
+    //required this.amountt,
+    required this.hostleInfo,
+    required this.hostelLocation,
+    required this.numberOfRoomsAvailable,
   });
 }
 
+List imageUrls = [
+  'assets/images/hostel11.jpg',
+  'assets/images/hostel22.jpg',
+  'assets/images/hostel33.jpeg',
+  'assets/images/hostel44.jpeg',
+];
+
+// List amountt = [
+//   '3200',
+//   '2000',
+//   '2000',
+//   '2000'
+// ];
+
 List<AllHostels> getAllHostles = [
   AllHostels(
-    
-    hostelImage: 'assets/images/hostel1.jpg', 
-    hostelName: 'Samuel Hostel', 
+    hostelImage: 'assets/images/getfund.jpg',
+    hostelName: 'GetFund Hostel',
     numberOfRoomsAvailable: '15 rooms Available',
-    'More Info',
+    hostleInfo: HostelsDescription.getFundHosel,
+    hostelRooms: imageUrls,
+    //amountt: amountt,
     false,
-    hostelLocation: 'Loc: Fiapre',
-    ),
-
-    AllHostels(
-    hostelImage: 'assets/images/hostel3.jpg', 
-    hostelName: 'Lasvegas Hostel', 
+    hostelLocation: 'Loc: Fiapre', 
+  ),
+  AllHostels(
+    hostelImage: 'assets/images/Erichostel.jpg',
+    hostelName: 'Eric Hostel',
     numberOfRoomsAvailable: '2 rooms Available',
     hostelLocation: 'Loc: Kumasi',
-     'More more info',
-     false,
-    ),
-
-    AllHostels(
-    hostelImage: 'assets/images/hostel1.jpg', 
-    hostelName: 'Baidu Hostel', 
+    //amountt: amountt,
+    hostelRooms: imageUrls,
+    hostleInfo: HostelsDescription.ericHostel,
+    false,
+  ),
+  AllHostels(
+    hostelImage: 'assets/images/samelhostel.jpg',
+    hostelName: 'Samuel Hostel',
     numberOfRoomsAvailable: '5 rooms Available',
-    hostelLocation: 'Loc: Abrokyere',
-    'more and more and more',
+    hostelLocation: 'Loc: Fiapre',
+    //amountt: amountt,
+    hostelRooms: imageUrls,
+    hostleInfo: HostelsDescription.samuelHostel,
     false,
-    ),
-
-     AllHostels(
-    hostelImage: 'assets/images/hostel3.jpg', 
-    hostelName: 'Bola Hostel', 
+  ),
+  AllHostels(
+    hostelImage: 'assets/images/baidoo.jpg',
+    hostelName: 'Baidoo Hostel',
     numberOfRoomsAvailable: '7 rooms Available',
-    hostelLocation: 'Loc: Desmond House',
-    'more and more and more',
+    hostelLocation: 'Loc: Fiapre Marketplace',
+    hostelRooms: imageUrls,
+    //amountt: amountt,
+    hostleInfo: HostelsDescription.baidooHostel,
     false,
-    ),
-
-     AllHostels(
-    hostelImage: 'assets/images/hostel1.jpg', 
-    hostelName: 'Bright Hostel', 
-    numberOfRoomsAvailable: '17 rooms Available',
-    hostelLocation: 'Loc: Zinko',
-    'more and more and more',
-    false,
-    ),
-
-     AllHostels(
-    hostelImage: 'assets/images/hostel3.jpg', 
-    hostelName: 'New Hostel', 
+  ),
+  // AllHostels(
+  //   hostelImage: 'assets/images/hostel1.jpg',
+  //   hostelName: 'Bright Hostel',
+  //   numberOfRoomsAvailable: '17 rooms Available',
+  //   hostelLocation: 'Loc: Zinko',
+  //   hostelRooms: imageUrls,
+  //   //amountt: amountt,
+  //   hostleInfo: HostelsDescription.getFundHosel,
+  //   false,
+  // ),
+  AllHostels(
+    hostelImage: 'assets/images/patiance hostel.jpg',
+    hostelName: 'Patience Hostel',
     numberOfRoomsAvailable: '5 rooms Available',
     hostelLocation: 'Loc: Campus',
-    'more and more and more',
+    hostelRooms: imageUrls,
+    //amountt: amountt,
+    hostleInfo: HostelsDescription.patienceHostel,
     false,
-    ),
+  ),
 ];
