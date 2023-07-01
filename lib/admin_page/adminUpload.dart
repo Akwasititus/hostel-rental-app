@@ -213,7 +213,7 @@ class _AdminUploadState extends State<AdminUpload> {
                                   ]),
                                   borderRadius: BorderRadius.circular(20)),
                               child: Container(
-                                width: 200,
+                                width: 201,
                                 height: 50,
                                 alignment: Alignment.center,
                                 child: const Text(
