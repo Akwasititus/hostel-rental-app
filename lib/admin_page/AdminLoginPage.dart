@@ -163,11 +163,11 @@ class _AdminLoginState extends State<AdminLogin> {
                           2,
                           ElevatedButton(
                             onPressed: () {
-                              Get.offAll(const AdminUpload());
+                              Get.off(const AdminUpload());
                             },
                             style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.purpleAccent,
-                                shadowColor: Colors.purpleAccent,
+                                foregroundColor: Colors.purpleAccent,
+                                 shadowColor: Colors.purpleAccent,
                                 elevation: 18,
                                 padding: EdgeInsets.zero,
                                 shape: RoundedRectangleBorder(

@@ -1,11 +1,11 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
 import '../Models/hostelCardModel.dart';
 import '../utils/constants.dart';
+import '../utils/widgets/buttons.dart';
 
 class Detail extends StatelessWidget {
   @override
@@ -15,12 +15,14 @@ class Detail extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFcbe6f6),
       appBar: AppBar(
-        backgroundColor:  Colors.transparent,
+        backgroundColor: Colors.transparent,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(hostelsArguments['hostelsName'],style: AppWhiteTextStyle.texth1),
-            Text(hostelsArguments['hostelLocation'],style: AppWhiteTextStyle.texth2),
+            Text(hostelsArguments['hostelsName'],
+                style: AppWhiteTextStyle.texth1),
+            Text(hostelsArguments['hostelLocation'],
+                style: AppWhiteTextStyle.texth2),
           ],
         ),
       ),
@@ -29,16 +31,16 @@ class Detail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-              child: Image.asset(hostelsArguments['imgURL'])),
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0)),
+                child: Image.asset(hostelsArguments['imgURL'])),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Details',  style: AppBlackTextStyle.texth1),
+                  const Text('Details', style: AppBlackTextStyle.texth1),
                   const SizedBox(height: 10),
                   ReadMoreText(
                     hostelsArguments['hostelsDesc'],
@@ -48,59 +50,143 @@ class Detail extends StatelessWidget {
                     trimCollapsedText: 'read more',
                     trimExpandedText: '...Show less',
                     lessStyle: const TextStyle(fontWeight: FontWeight.bold),
-                       moreStyle:
-                          const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    style: AppBlackTextStyle.texth3,textAlign: TextAlign.justify,
+                    moreStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold),
+                    style: AppBlackTextStyle.texth3,
+                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
-                  Text('Rooms Available at ${hostelsArguments['hostelsName']}', style: AppBlackTextStyle.texth1),
+                  Text('Rooms Available at ${hostelsArguments['hostelsName']}',
+                      style: AppBlackTextStyle.texth1),
                   const SizedBox(height: 10),
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                     ),
                     itemCount: hostelsArguments['hostelRooms'].length,
                     itemBuilder: (BuildContext context, int index) {
-                      var am = 3200 + index + 10; 
+                      
                       final imageUrl = hostelsArguments['hostelRooms'][index];
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(imageUrl),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.black.withOpacity(0.4),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                                Text(
-                                'GHS 2300',                                
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+
+                      final prices = [4000, 3500, 3000, 2500];
+                      final availability = [
+                        true,
+                        true,
+                        false,
+                        true
+                      ]; // Example availability status for each room
+
+                      final isAvailable = availability[index];
+
+                      return GestureDetector(
+                        onTap: () {
+                          if (isAvailable) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Room Details'),
+                                  content: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'You have selected to pay GHS ${prices[index]} for ${index + 1} person(s) in a Room',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 10.0,
+                                      ),
+                                      Buttons(
+                                        btnName: 'Cancel',
+                                        clickMe: () {
+                                          Navigator.pop(context);
+                                        },
+                                        hostelAmount: 'GHS ${prices[index]}',
+                                        colour: Colors.grey.shade400,
+                                      ),
+                                      const SizedBox(
+                                        height: 10.0,
+                                      ),
+                                      Buttons(
+                                        btnName: 'Confirm to pay',
+                                        clickMe: () {},
+                                        hostelAmount: 'GHS ${prices[index]}',
+                                        colour: Colors.blue,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          } else {
+                            showAnimatedDialog(
+                                context: context,
+                                barrierDismissible: true,
+
+                                builder: (BuildContext context) {
+                                  return ClassicGeneralDialogWidget(
+                                    titleText: 'Room Unavailable',
+                                    
+                                    contentText: 
+                                        'This room is currently unavailable.'
+                                    
+                                  );
+                                },
+                                animationType: DialogTransitionType.fadeRotate,
+                                curve: Curves.fastOutSlowIn,
+                                duration: const Duration(seconds: 1),
+                              );
+                            
+                          }
+                        },
+                        child: Opacity(
+                          opacity: isAvailable
+                              ? 1.0
+                              : 0.5, // Adjust the opacity for unavailable rooms
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(imageUrl),
+                                fit: BoxFit.cover,
                               ),
-                              const SizedBox(height: 7.0),
-                              Text(
-                                '${index + 1} in a Room',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.black.withOpacity(0.4),
                               ),
-                            ],
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'GHS ${prices[index]}',
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 7.0),
+                                  Text(
+                                    '${index + 1} in a Room',
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       );

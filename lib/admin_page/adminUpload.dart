@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
+import '../MotherPage/mother_page.dart';
 import 'AdminLoginPage.dart';
 import 'fade_animation.dart';
 
@@ -189,7 +190,7 @@ class _AdminUploadState extends State<AdminUpload> {
                                     contentText:
                                         'Your Data has been Submitted Succesfully!',
                                     onNegativeClick: () {
-                                      Get.to(const AdminLogin());
+                                      Get.offAll(const NavigationHome());
                                     },
                                   );
                                 },
@@ -199,8 +200,7 @@ class _AdminUploadState extends State<AdminUpload> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                                onPrimary: Colors.purpleAccent,
-                                shadowColor: Colors.purpleAccent,
+                                foregroundColor: Colors.purpleAccent, shadowColor: Colors.purpleAccent,
                                 elevation: 18,
                                 padding: EdgeInsets.zero,
                                 shape: RoundedRectangleBorder(

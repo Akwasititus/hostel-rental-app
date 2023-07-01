@@ -6,8 +6,9 @@ class Buttons extends StatelessWidget {
   final String btnName;
   final VoidCallback clickMe;
   final String hostelAmount;
+  final Color colour;
 
-  Buttons({required this.btnName, required this.clickMe, required this.hostelAmount});
+  Buttons({required this.btnName, required this.clickMe, required this.hostelAmount, required this.colour});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,12 @@ class Buttons extends StatelessWidget {
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: colour,
           borderRadius: BorderRadius.circular(10.0)
         ),
         child: ListTile(
-          leading: Text(btnName,style: AppWhiteTextStyle.texth2),
-          trailing: Text(hostelAmount,style: AppWhiteTextStyle.texth2),
+          leading: Text(btnName,style: AppWhiteTextStyle.texth1),
+          trailing: Text(hostelAmount,style: AppWhiteTextStyle.texth1),
            ),
       ),
     );
