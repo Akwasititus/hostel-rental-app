@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import '../MotherPage/mother_page.dart';
+import '../utils/widgets/textFields.dart';
 import 'AdminLoginPage.dart';
 import 'fade_animation.dart';
 
@@ -13,6 +14,21 @@ class AdminUpload extends StatefulWidget {
 }
 
 class _AdminUploadState extends State<AdminUpload> {
+  final _hostelNameController = TextEditingController();
+  final _hostelLocationController = TextEditingController();
+  final _numberOfRoomAvailableController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    _hostelNameController.dispose();
+   
+    _hostelLocationController.dispose();
+    _numberOfRoomAvailableController.dispose();
+    
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,59 +92,63 @@ class _AdminUploadState extends State<AdminUpload> {
                                 ),
                               ),
                             )),
-                        const MyTextField(
+                         MyTextField(
                           hintext: 'Hostel Name',
-                          iconData: Icons.home,
+                          iconData: Icons.home, controller: _hostelNameController, height: 70,
                         ),
-                        const MyTextField(
+                         MyTextField(
                           hintext: 'Hostel Location',
-                          iconData: Icons.room_outlined,
+                          iconData: Icons.room_outlined, controller: _hostelLocationController, height: 70,
                         ),
-                        const MyTextField(
+                         MyTextField(
                             hintext: 'Number of Rooms Available',
-                            iconData: Icons.location_city),
-                        FadeAnimation(
-                          2,
-                          Container(
-                              width: double.infinity,
-                              height: 130,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 20),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.purpleAccent, width: 1),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.purpleAccent,
-                                        blurRadius: 10,
-                                        offset: Offset(1, 1)),
-                                  ],
-                                  color: Colors.white,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      margin: const EdgeInsets.only(left: 10),
-                                      child: TextFormField(
-                                        minLines: 6,
-                                        maxLines: null,
-                                        keyboardType: TextInputType.multiline,
-                                        decoration: const InputDecoration(
-                                          alignLabelWithHint: true,
-                                          border: InputBorder.none,
-                                          label: Text('Hostel Describtion'),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )),
+                            iconData: Icons.location_city, controller: _numberOfRoomAvailableController, height: 70,),
+                        MyTextField(
+                          hintext: 'Hostel Describtion',
+                          iconData: Icons.comment, controller: _hostelLocationController, height: 130,
                         ),
+                        // FadeAnimation(
+                        //   2,
+                        //   Container(
+                        //       width: double.infinity,
+                        //       height: 130,
+                        //       margin: const EdgeInsets.symmetric(
+                        //           horizontal: 20, vertical: 20),
+                        //       padding: const EdgeInsets.symmetric(
+                        //           horizontal: 15, vertical: 5),
+                        //       decoration: BoxDecoration(
+                        //           border: Border.all(
+                        //               color: Colors.purpleAccent, width: 1),
+                        //           boxShadow: const [
+                        //             BoxShadow(
+                        //                 color: Colors.purpleAccent,
+                        //                 blurRadius: 10,
+                        //                 offset: Offset(1, 1)),
+                        //           ],
+                        //           color: Colors.white,
+                        //           borderRadius: const BorderRadius.all(
+                        //               Radius.circular(20))),
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.start,
+                        //         children: [
+                        //           Expanded(
+                        //             child: Container(
+                        //               margin: const EdgeInsets.only(left: 10),
+                        //               child: TextFormField(
+                        //                 minLines: 6,
+                        //                 maxLines: null,
+                        //                 keyboardType: TextInputType.multiline,
+                        //                 decoration: const InputDecoration(
+                        //                   alignLabelWithHint: true,
+                        //                   border: InputBorder.none,
+                        //                   label: Text('Hostel Describtion'),
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       )),
+                        // ),
                         FadeAnimation(
                           2,
                           Container(
@@ -239,49 +259,3 @@ class _AdminUploadState extends State<AdminUpload> {
   }
 }
 
-class MyTextField extends StatelessWidget {
-  final String hintext;
-  final IconData iconData;
-
-  const MyTextField({super.key, required this.hintext, required this.iconData});
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeAnimation(
-      2,
-      Container(
-          width: double.infinity,
-          height: 70,
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.purpleAccent, width: 1),
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.purpleAccent,
-                    blurRadius: 10,
-                    offset: Offset(1, 1)),
-              ],
-              color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(20))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(iconData),
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: TextFormField(
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      label: Text(hintext),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )),
-    );
-  }
-}

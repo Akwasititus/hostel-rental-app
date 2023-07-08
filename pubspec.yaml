@@ -42,6 +42,7 @@ dependencies:
   get: ^4.6.5
   simple_animations: ^4.0.0 
   flutter_animated_dialog: ^2.0.1
+  flutter_mailer: ^2.1.1
   
 dev_dependencies:
   flutter_test:

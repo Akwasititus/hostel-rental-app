@@ -4,7 +4,7 @@ class AllHostels {
   final String hostelImage;
   final String hostelName;
   final String hostleInfo;
-  //final List amountt;
+  final String hostelEmail;
   final String hostelLocation;
   final List hostelRooms;
   final String numberOfRoomsAvailable;
@@ -15,7 +15,7 @@ class AllHostels {
     required this.hostelImage,
     required this.hostelName,
     required this.hostelRooms,
-    //required this.amountt,
+    required this.hostelEmail,
     required this.hostleInfo,
     required this.hostelLocation,
     required this.numberOfRoomsAvailable,
@@ -29,13 +29,6 @@ List imageUrls = [
   'assets/images/hostel44.jpeg',
 ];
 
-// List amountt = [
-//   '3200',
-//   '2000',
-//   '2000',
-//   '2000'
-// ];
-
 List<AllHostels> getAllHostles = [
   AllHostels(
     hostelImage: 'assets/images/getfund.jpg',
@@ -43,16 +36,16 @@ List<AllHostels> getAllHostles = [
     numberOfRoomsAvailable: '15 rooms Available',
     hostleInfo: HostelsDescription.getFundHosel,
     hostelRooms: imageUrls,
-    //amountt: amountt,
     false,
-    hostelLocation: 'Loc: Fiapre', 
+    hostelLocation: 'Loc: Fiapre',
+    hostelEmail: 'www.ayamgatitus@gmail.com',
   ),
   AllHostels(
     hostelImage: 'assets/images/Erichostel.jpg',
     hostelName: 'Eric Hostel',
     numberOfRoomsAvailable: '2 rooms Available',
     hostelLocation: 'Loc: Kumasi',
-    //amountt: amountt,
+    hostelEmail: 'www.ayamgatitus@gmail.com',
     hostelRooms: imageUrls,
     hostleInfo: HostelsDescription.ericHostel,
     false,
@@ -62,7 +55,7 @@ List<AllHostels> getAllHostles = [
     hostelName: 'Samuel Hostel',
     numberOfRoomsAvailable: '5 rooms Available',
     hostelLocation: 'Loc: Fiapre',
-    //amountt: amountt,
+    hostelEmail: 'www.ayamgatitus@gmail.com',
     hostelRooms: imageUrls,
     hostleInfo: HostelsDescription.samuelHostel,
     false,
@@ -73,27 +66,17 @@ List<AllHostels> getAllHostles = [
     numberOfRoomsAvailable: '7 rooms Available',
     hostelLocation: 'Loc: Fiapre Marketplace',
     hostelRooms: imageUrls,
-    //amountt: amountt,
+    hostelEmail: 'www.ayamgatitus@gmail.com',
     hostleInfo: HostelsDescription.baidooHostel,
     false,
   ),
-  // AllHostels(
-  //   hostelImage: 'assets/images/hostel1.jpg',
-  //   hostelName: 'Bright Hostel',
-  //   numberOfRoomsAvailable: '17 rooms Available',
-  //   hostelLocation: 'Loc: Zinko',
-  //   hostelRooms: imageUrls,
-  //   //amountt: amountt,
-  //   hostleInfo: HostelsDescription.getFundHosel,
-  //   false,
-  // ),
   AllHostels(
     hostelImage: 'assets/images/patiance hostel.jpg',
     hostelName: 'Patience Hostel',
     numberOfRoomsAvailable: '5 rooms Available',
     hostelLocation: 'Loc: Campus',
     hostelRooms: imageUrls,
-    //amountt: amountt,
+    hostelEmail: 'www.ayamgatitus@gmail.com',
     hostleInfo: HostelsDescription.patienceHostel,
     false,
   ),

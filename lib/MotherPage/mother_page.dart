@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../Screens/home.dart';
 import '../admin_page/AdminLoginPage.dart';
-import 'homestels.dart';
+import 'homestelsHouse/homestels.dart';
 
 
 

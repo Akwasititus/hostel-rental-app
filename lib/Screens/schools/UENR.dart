@@ -13,11 +13,22 @@ class UENR extends StatefulWidget {
 }
 
 class _UENRState extends State<UENR> {
+
+  //-------------------------------------------------------------
+  // selecting fav 
+  //-------------------------------------------------------------
   bool favoriteColor = false;
+
+  //-------------------------------------------------------------
+  //  controller for the search
+  //-------------------------------------------------------------
   final TextFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    //-------------------------------------------------------------
+    // media query for checking screen sizes
+    //-------------------------------------------------------------
     var deviceSize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -30,6 +41,7 @@ class _UENRState extends State<UENR> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Row(
                   children: [
                     Column(
@@ -54,6 +66,9 @@ class _UENRState extends State<UENR> {
                 const SizedBox(
                   height: 10.0,
                 ),
+                ///-------------------------------------------------------------
+                /// Search view 
+                ///-------------------------------------------------------------
                 Container(
                   width: double.infinity,
                   height: 50,
@@ -81,6 +96,9 @@ class _UENRState extends State<UENR> {
                     ),
                   ),
                 ),
+                //-------------------------------------------------------------
+                // Search view ends here
+                //-------------------------------------------------------------
                 const SizedBox(
                   height: 15,
                 ),
@@ -98,6 +116,9 @@ class _UENRState extends State<UENR> {
                 const SizedBox(
                   height: 10.0,
                 ),
+                //-------------------------------------------------------------
+                // This list view shows a list of pupolar hostels 
+                //-------------------------------------------------------------
                 SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -110,13 +131,17 @@ class _UENRState extends State<UENR> {
                           child: GestureDetector(
                             onTap: () {
                               Get.to( Detail(), arguments: {
+                                //-------------------------------------------------
+                                // these are argument from the model page that are being passed to the detailed screen
+                                //---------------------------------------------------
                                 'hostelsName': hostel.hostelName.toString(),
+                                'hostelsEmail': hostel.hostelEmail.toString(),
                                 'hostelsDesc': hostel.hostleInfo.toString(),
                                 'hostelLocation':
                                     hostel.hostelLocation.toString(),
                                 'imgURL': hostel.hostelImage,
                                  'hostelRooms': hostel.hostelRooms,
-                                 //'amountt': hostel.hostelRooms,
+                                 
                                 'amount':
                                     hostel.numberOfRoomsAvailable.toString(),
                               },duration: const Duration(seconds: 1),transition: Transition.native);
@@ -193,6 +218,9 @@ class _UENRState extends State<UENR> {
                 ),
                 const SizedBox(height: 15),
                 const Text('Resent', style: AppBlackTextStyle.texth2),
+                //-------------------------------------------------------------
+                // this is a list view that shows a list of the resent hostels 
+                //-------------------------------------------------------------
                 SizedBox(
                   height: 300,
                   child: ListView.builder(
@@ -202,6 +230,9 @@ class _UENRState extends State<UENR> {
                         return GestureDetector(
                           onTap: () {
                             Get.to( Detail(), arguments: {
+                              //-------------------------------------------------
+                                // these are argument from the model page that are being passed to the detailed screen
+                                //---------------------------------------------------
                               'hostelsName': hostel1.hostelName.toString(),
                               'hostelLocation':
                                   hostel1.hostelLocation.toString(),
@@ -232,13 +263,7 @@ class _UENRState extends State<UENR> {
                                       const SizedBox(height: 10),
                                       Text(hostel1.hostelLocation,
                                           style: AppBlackTextStyle.texth2),
-                                      // const SizedBox(height: 7,),
-
-                                      //TODO: we no go to pass the info here but rather at the detail page
-
-                                      // Text(getAllHostles[index].hostleInfo,
-                                      // style: AppBlackTextStyle.texth2
-                                      // ),
+                                      
                                       Text(hostel1.numberOfRoomsAvailable,
                                           style: AppBlackTextStyle.texth2),
                                     ],
