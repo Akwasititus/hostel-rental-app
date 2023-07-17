@@ -137,13 +137,10 @@ class _UENRState extends State<UENR> {
                                 'hostelsName': hostel.hostelName.toString(),
                                 'hostelsEmail': hostel.hostelEmail.toString(),
                                 'hostelsDesc': hostel.hostleInfo.toString(),
-                                'hostelLocation':
-                                    hostel.hostelLocation.toString(),
+                                'hostelLocation': hostel.hostelLocation.toString(),
                                 'imgURL': hostel.hostelImage,
-                                 'hostelRooms': hostel.hostelRooms,
-                                 
-                                'amount':
-                                    hostel.numberOfRoomsAvailable.toString(),
+                                'hostelRooms': hostel.hostelRooms,
+                                'amount': hostel.numberOfRoomsAvailable.toString(),
                               },duration: const Duration(seconds: 1),transition: Transition.native);
                             },
                             child: Container(

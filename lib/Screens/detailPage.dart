@@ -69,9 +69,11 @@ class Detail extends StatelessWidget {
                     textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
-                  Text('Rooms Available at ${hostelsArguments['hostelsName']}',
+                  const Text('Please Select your prefered Room type',
                       style: AppBlackTextStyle.texth1),
                   const SizedBox(height: 10),
+
+                  
                   //-------------------------------------------------
                   // this is a grid view showing the rooms in the selected hostel
                   //---------------------------------------------------
