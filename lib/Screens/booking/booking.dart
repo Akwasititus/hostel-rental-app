@@ -7,7 +7,7 @@ import '../../admin_page/fade_animation.dart';
 import '../../utils/widgets/textFields.dart';
 
 class HostelBooking extends StatefulWidget {
-  const HostelBooking({Key? key}) : super(key: key);
+  
 
   @override
   _HostelBookingState createState() => _HostelBookingState();
@@ -53,7 +53,9 @@ class _HostelBookingState extends State<HostelBooking> {
     final String hostelName = arguments['hostelName'];
     final int hostelAmount = arguments['hostelAmount'];
     final int personsInRoom = arguments['personsInRoom'];
-    final String hostelsEmail = arguments['hostelsEmail'];
+    final String hostelEmail = arguments['hostelEmail'];
+
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -74,9 +76,9 @@ class _HostelBookingState extends State<HostelBooking> {
               child: FadeAnimation(
                 2,
                 Column(
-                  children: const [
+                  children:  [
                     Text(
-                      "Your Responce will be sent to the Hostel Managers for verification",
+                      "Your Responce will be sent to the Hostel Managers for verification $hostelEmail",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
@@ -139,7 +141,7 @@ class _HostelBookingState extends State<HostelBooking> {
                           2,
                           Center(
                             child: Text(
-                              "Please Upload the right information",
+                              "Please Upload the right information ",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 25,
@@ -254,7 +256,7 @@ class _HostelBookingState extends State<HostelBooking> {
                                  '''
 USERS SELECTIONS
 ------------------------\n
-Hostel Name: $hostelName
+Hostel Name: $hostelName $hostelEmail
 ________________________\n
 Amount: GHS $hostelAmount
 _________________________
@@ -277,7 +279,7 @@ ________________________\n
                               //-------------------------------------------------
                               // here's the hostel managers email address
                               //---------------------------------------------------
-                              recipients: [hostelsEmail],
+                              recipients: [hostelEmail],
                               ccRecipients: ['www.akwasititus@gmail.com'],
                               subject: 'New Hostel Booking from $_name',
                               body: emailBody,

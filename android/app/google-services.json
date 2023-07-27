@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "665342157756",
+    "project_id": "hostel-rent-15fd1",
+    "storage_bucket": "hostel-rent-15fd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665342157756:android:32a1b2a2ecc156550d41b9",
+        "android_client_info": {
+          "package_name": "com.example.rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665342157756-cnhl3a6501ichads2picd3pbes439hju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvSSBZZ_GB1vtfiiVpmBEr0NiQUJDf7ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665342157756-cnhl3a6501ichads2picd3pbes439hju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

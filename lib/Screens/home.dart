@@ -13,46 +13,38 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   final List<String> _schools = const [
     'UENR',
-    'KNUST',
-    'UCC',
-    'UPSA',
     'STU',
-    'UMAT',
-    'UG',
+    'CUG ',
   ];
 
   final List<Widget> _hostels = [
     const UENR(),
     Column(
-      children: const [
-        Center(child: CircularProgressIndicator()),
+      children:  [
+        Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            CircularProgressIndicator(),
+            Text('STU Loading soon')
+          ],
+        )),
       ],
     ),
     Column(
-      children: const [
-        Center(child: CircularProgressIndicator()),
+      children:  [
+        Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            CircularProgressIndicator(),
+            Text('Catholic University Loading')
+          ],
+        )),
       ],
     ),
-    Column(
-      children: const [
-        Center(child: CircularProgressIndicator()),
-      ],
-    ),
-    Column(
-      children: const [
-        Center(child: CircularProgressIndicator()),
-      ],
-    ),
-    Column(
-      children: const [
-        Center(child: CircularProgressIndicator()),
-      ],
-    ),
-    Column(
-      children: const [
-        Center(child: CircularProgressIndicator()),
-      ],
-    ),
+    
+    
+    
+    
     
   ];
 

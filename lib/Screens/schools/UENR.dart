@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get.dart';
 import '../../Models/hostelCardModel.dart';
 import '../../utils/constants.dart';
+
+import '../../utils/functions/getHostels.dart';
+import '../../utils/functions/getResentHostels.dart';
 import '../detailPage.dart';
 
 class UENR extends StatefulWidget {
@@ -13,9 +17,8 @@ class UENR extends StatefulWidget {
 }
 
 class _UENRState extends State<UENR> {
-
   //-------------------------------------------------------------
-  // selecting fav 
+  // selecting fav
   //-------------------------------------------------------------
   bool favoriteColor = false;
 
@@ -23,6 +26,44 @@ class _UENRState extends State<UENR> {
   //  controller for the search
   //-------------------------------------------------------------
   final TextFieldController = TextEditingController();
+
+  // final CollectionReference _collectionReference =
+  //     FirebaseFirestore.instance.collection('addHostel');
+
+  // dicument IDs
+  List<String> docIDs1 = [];
+
+  //getDocs Ids
+  Future getDocId1() async {
+    await FirebaseFirestore.instance
+        .collection('addHostel')
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((docment) {
+              docIDs1.add(docment.reference.id);
+            }));
+  }
+
+  // dicument IDs
+  List<String> docIDs2 = [];
+
+  //getDocs Ids
+  // Future getDocId2() async {
+  //   await FirebaseFirestore.instance
+  //       .collection('addResentHostel')
+  //       .get()
+  //       .then((snapshot2) => snapshot2.docs.forEach((docment2) {
+  //             docIDs2.add(docment2.reference.id);
+  //           }));
+  // }
+
+  Future<List<String>> getDocId2() async {
+    QuerySnapshot snapshot2 =
+        await FirebaseFirestore.instance.collection('addResentHostel').get();
+    return snapshot2.docs.map((document2) => document2.id).toList();
+  }
+
+  // final CollectionReference _collectionReference =
+  //     FirebaseFirestore.instance.collection('addResentHostel');
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +82,6 @@ class _UENRState extends State<UENR> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Row(
                   children: [
                     Column(
@@ -66,8 +106,9 @@ class _UENRState extends State<UENR> {
                 const SizedBox(
                   height: 10.0,
                 ),
+
                 ///-------------------------------------------------------------
-                /// Search view 
+                /// Search view
                 ///-------------------------------------------------------------
                 Container(
                   width: double.infinity,
@@ -117,190 +158,92 @@ class _UENRState extends State<UENR> {
                   height: 10.0,
                 ),
                 //-------------------------------------------------------------
-                // This list view shows a list of pupolar hostels 
+                // This list view shows a list of pupolar hostels
                 //-------------------------------------------------------------
-                SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    itemCount: getAllHostles.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      final hostel = getAllHostles[index];
-                      return Padding(
-                          padding: const EdgeInsets.all(7.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.to( Detail(), arguments: {
-                                //-------------------------------------------------
-                                // these are argument from the model page that are being passed to the detailed screen
-                                //---------------------------------------------------
-                                'hostelsName': hostel.hostelName.toString(),
-                                'hostelsEmail': hostel.hostelEmail.toString(),
-                                'hostelsDesc': hostel.hostleInfo.toString(),
-                                'hostelLocation': hostel.hostelLocation.toString(),
-                                'imgURL': hostel.hostelImage,
-                                'hostelRooms': hostel.hostelRooms,
-                                'amount': hostel.numberOfRoomsAvailable.toString(),
-                              },duration: const Duration(seconds: 1),transition: Transition.native);
-                            },
-                            child: Container(
-                              height: 100,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFcbe6f6),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: GridTile(
-                                header: GridTileBar(
-                                  trailing: Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                          color: Colors.black54,
-                                          borderRadius:
-                                              BorderRadius.circular(15.0)),
-                                      child: IconButton(
-                                        icon: Icon(
-                                            hostel.favIcon
-                                                ? Icons.favorite
-                                                : Icons.thumb_up_alt_rounded,
-                                            color: hostel.favIcon
-                                                ? Colors.red
-                                                : Colors.white),
-                                        onPressed: () {
-                                          setState(() {
-                                            hostel.favIcon = !hostel.favIcon;
-                                          });
-                                          /* Add to Favarate */
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                footer: GridTileBar(
-                                  backgroundColor: Colors.black54,
-                                  title: Text(hostel.hostelName,
-                                      style: AppWhiteTextStyle.texth1),
-                                  subtitle: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(hostel.hostelLocation,
-                                          style: AppWhiteTextStyle.texth2),
-                                      Text(hostel.numberOfRoomsAvailable,
-                                          style: AppWhiteTextStyle.texth2),
-                                    ],
-                                  ),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20.2),
-                                      topRight: Radius.circular(
-                                          20.0)), // Image border
-                                  child: Image.asset(
-                                    hostel.hostelImage,
-                                    height: 20.5,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ));
-                    },
-                  ),
-                ),
+                FutureBuilder(
+                    future: getDocId1(),
+                    builder: (context, snapshot) {
+                      return SizedBox(
+                        height: 250,
+                        child: ListView.builder(
+                          itemCount: docIDs1.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child:
+                                 GestureDetector(
+                                    onTap: () {
+                                      Get.to(const Detail(),
+                                          //arguments: {
+                                            //-------------------------------------------------
+                                            // these are argument from the model page that are being passed to the detailed screen
+                                            //---------------------------------------------------
+                                            ///'hostelName': hostelName.toString(),
+                                            // 'hostelEmail':
+                                            //     hostelEmail.toString(),
+                                            //'hostelDesc': hostelDesc.toString(),
+                                            /// 'hostelLocation':
+                                            //     hostelLocation.toString(),
+                                            /// 'imageUrl': imageUrl
+                                            //'hostelRooms': hostel.hostelRooms.toString(),
+                                            //'numberOfRoomAvailable': documentSnapshot['numberOfRoomAvailable'].//toString(),
+                                          //},
+                                          duration: const Duration(seconds: 1),
+                                          transition: Transition.native);
+                                    },
+                                    child: GetHostels(
+                                        documentId: docIDs1[index])));
+                          },
+                        ),
+                      );
+                    }),
                 const SizedBox(height: 15),
                 const Text('Resent', style: AppBlackTextStyle.texth2),
                 //-------------------------------------------------------------
-                // this is a list view that shows a list of the resent hostels 
+                // this is a list view that shows a list of the resent hostels
                 //-------------------------------------------------------------
                 SizedBox(
                   height: 300,
-                  child: ListView.builder(
-                      itemCount: getAllHostles.length,
-                      itemBuilder: (context, index) {
-                        final hostel1 = getAllHostles[index];
-                        return GestureDetector(
-                          onTap: () {
-                            Get.to( Detail(), arguments: {
-                              //-------------------------------------------------
-                                // these are argument from the model page that are being passed to the detailed screen
-                                //---------------------------------------------------
-                              'hostelsName': hostel1.hostelName.toString(),
-                              'hostelLocation':
-                                  hostel1.hostelLocation.toString(),
-                              'imgURL': hostel1.hostelImage,
-                              // 'hostelRooms': hostel1.hostelRooms,
-                              'amount':
-                                  hostel1.numberOfRoomsAvailable.toString()
-                            },duration: const Duration(seconds: 1),transition: Transition.native);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 100,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.grey.shade100,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 12.0),
-                                child: ListTile(
-                                  title: Text(hostel1.hostelName,
-                                      style: AppBlackTextStyle.texth1),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Text(hostel1.hostelLocation,
-                                          style: AppBlackTextStyle.texth2),
-                                      
-                                      Text(hostel1.numberOfRoomsAvailable,
-                                          style: AppBlackTextStyle.texth2),
-                                    ],
-                                  ),
-                                  leading: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Image.asset(
-                                      hostel1.hostelImage,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  trailing: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xFFcbe6f6),
-                                        borderRadius:
-                                            BorderRadius.circular(15.0)),
-                                    child: IconButton(
-                                      icon: Icon(
-                                          hostel1.favIcon
-                                              ? Icons.favorite
-                                              : Icons.thumb_up_alt_rounded,
-                                          color: hostel1.favIcon
-                                              ? Colors.red
-                                              : Colors.white),
-                                      onPressed: () {
-                                        setState(() {
-                                          hostel1.favIcon = !hostel1.favIcon;
-                                        });
-                                        /* Add to Favarate */
+                  child:
+
+                      //final hostel1 = getAllHostles[index];
+                      FutureBuilder<List<String>>(
+                    future: getDocId2(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        List<String> docIDs2 = snapshot.data ?? [];
+                        return SizedBox(
+                          height: 250,
+                          child: ListView.builder(
+                            itemCount: docIDs2.length,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(
+                                      const Detail(),
+                                      arguments: {
+                                        // ...
                                       },
-                                    ),
-                                  ),
+                                      duration: const Duration(seconds: 1),
+                                      transition: Transition.native,
+                                    );
+                                  },
+                                  child: GetResentHostels(
+                                      documentId2: docIDs2[index]),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
                         );
-                      }),
+                      }
+
+                      return const Text('Loading...');
+                    },
+                  ),
                 )
               ],
             ),
@@ -310,3 +253,100 @@ class _UENRState extends State<UENR> {
     );
   }
 }
+
+
+
+
+// StreamBuilder(
+//                                 stream: _collectionReference.snapshots(),
+//                                 builder: ((BuildContext context,
+//                                     AsyncSnapshot<QuerySnapshot>
+//                                         streamSnapshot) {
+//                                   return SizedBox(
+//                                     height: MediaQuery.of(context).size.height,
+//                                     child: ListView.builder(
+//                                         itemCount: streamSnapshot
+//                                             .data!.docs.reversed.length,
+//                                         itemBuilder: (context, index) {
+//                                           final DocumentSnapshot
+//                                               documentSnapshot =
+//                                               streamSnapshot.data!.docs[index];
+
+//                                           return Padding(
+//                                             padding: const EdgeInsets.all(8.0),
+//                                             child: Container(
+//                                               height: 100,
+//                                               width: double.infinity,
+//                                               decoration: BoxDecoration(
+//                                                 borderRadius:
+//                                                     BorderRadius.circular(10.0),
+//                                                 color: Colors.grey.shade100,
+//                                               ),
+//                                               child: Padding(
+//                                                 padding: const EdgeInsets.only(
+//                                                     top: 12.0),
+//                                                 child: ListTile(
+//                                                   title: Text(
+//                                                       documentSnapshot[
+//                                                           'rHostelName'],
+//                                                       style: AppBlackTextStyle
+//                                                           .texth1),
+//                                                   subtitle: Column(
+//                                                     crossAxisAlignment:
+//                                                         CrossAxisAlignment
+//                                                             .start,
+//                                                     children: [
+//                                                       const SizedBox(
+//                                                           height: 10),
+//                                                       Text(
+//                                                           documentSnapshot[
+//                                                               'rHostelLocation'],
+//                                                           style:
+//                                                               AppBlackTextStyle
+//                                                                   .texth2),
+
+//                                                       // Text(hostel1.numberOfRoomsAvailable,
+//                                                       //     style: AppBlackTextStyle.texth2),
+//                                                     ],
+//                                                   ),
+//                                                   leading: ClipRRect(
+//                                                     borderRadius:
+//                                                         BorderRadius.circular(
+//                                                             5),
+//                                                     child: Image.asset(
+//                                                       documentSnapshot[
+//                                                           'rHostelImageLink'],
+//                                                       fit: BoxFit.cover,
+//                                                     ),
+//                                                   ),
+//                                                   // trailing: Container(
+//                                                   //   height: 40,
+//                                                   //   width: 40,
+//                                                   //   decoration: BoxDecoration(
+//                                                   //       color: const Color(0xFFcbe6f6),
+//                                                   //       borderRadius:
+//                                                   //           BorderRadius.circular(15.0)),
+//                                                   //   child: IconButton(
+//                                                   //     icon: Icon(
+//                                                   //         hostel1.favIcon
+//                                                   //             ? Icons.favorite
+//                                                   //             : Icons.thumb_up_alt_rounded,
+//                                                   //         color: hostel1.favIcon
+//                                                   //             ? Colors.red
+//                                                   //             : Colors.white),
+//                                                   //     onPressed: () {
+//                                                   //       setState(() {
+//                                                   //         hostel1.favIcon = !hostel1.favIcon;
+//                                                   //       });
+//                                                   //       /* Add to Favarate */
+//                                                   //     },
+//                                                   //   ),
+//                                                   // ),
+//                                                 ),
+//                                               ),
+//                                             ),
+//                                           );
+//                                         }),
+//                                   );
+//                                 })
+//                                 )

@@ -16,6 +16,14 @@ class Detail extends StatelessWidget {
     //---------------------------------------------------
     final hostelsArguments = Get.arguments;
 
+    final hostelName = hostelsArguments['hostelName'];
+    final hostelLocation = hostelsArguments['hostelLocation'];
+    final imageLink = hostelsArguments['imageLink'];
+    final hostelDesc = hostelsArguments['hostelDesc'];
+    final hostelEmail = hostelsArguments['hostelEmail'];
+
+    final hostelRooms = hostelsArguments['hostelRooms'];
+
     return Scaffold(
       backgroundColor: const Color(0xFFcbe6f6),
       appBar: AppBar(
@@ -26,10 +34,8 @@ class Detail extends StatelessWidget {
             //-------------------------------------------------
             // Displaying the hostel name on the appbar with the location
             //---------------------------------------------------
-            Text(hostelsArguments['hostelsName'],
-                style: AppWhiteTextStyle.texth1),
-            Text(hostelsArguments['hostelLocation'],
-                style: AppWhiteTextStyle.texth2),
+            Text(hostelName, style: AppWhiteTextStyle.texth1),
+            Text(hostelLocation, style: AppWhiteTextStyle.texth2),
           ],
         ),
       ),
@@ -44,7 +50,7 @@ class Detail extends StatelessWidget {
                 //-------------------------------------------------
                 // showing the image of the seleted hostel in full from the previous page
                 //---------------------------------------------------
-                child: Image.asset(hostelsArguments['imgURL'])),
+                child: Image.network(imageLink)),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -56,7 +62,7 @@ class Detail extends StatelessWidget {
                   // showing a brief discription on selected hostel
                   //---------------------------------------------------
                   ReadMoreText(
-                    hostelsArguments['hostelsDesc'],
+                    hostelDesc,
                     trimLines: 2,
                     colorClickableText: Colors.pink,
                     trimMode: TrimMode.Line,
@@ -69,11 +75,10 @@ class Detail extends StatelessWidget {
                     textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
-                  const Text('Please Select your prefered Room type',
+                  Text('Please Select your prefered Room type',
                       style: AppBlackTextStyle.texth1),
                   const SizedBox(height: 10),
 
-                  
                   //-------------------------------------------------
                   // this is a grid view showing the rooms in the selected hostel
                   //---------------------------------------------------
@@ -86,12 +91,12 @@ class Detail extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                     ),
-                    itemCount: hostelsArguments['hostelRooms'].length,
+                    itemCount: hostelRooms.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final imageUrl = hostelsArguments['hostelRooms'][index];
+                      final imageUrls = hostelRooms[index];
 
                       // a simple list of prices
-                      final prices = [4000, 3500, 3000, 2500];
+                      final prices = [4000, 3500, 2000, 1500];
 
                       return GestureDetector(
                           onTap: () {
@@ -108,8 +113,7 @@ class Detail extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text(
-                                          'Hostel Name: ${hostelsArguments['hostelsName']}',
+                                      Text('Hostel Name: $hostelName',
                                           style: AppBlackTextStyle.texth1),
                                       Text('Amouunt: GHS ${prices[index]}',
                                           style: AppBlackTextStyle.texth1),
@@ -133,16 +137,13 @@ class Detail extends StatelessWidget {
                                       Buttons(
                                         btnName: 'Book',
                                         clickMe: () {
-                                          Get.to(() => const HostelBooking(),
+                                          Get.to(() => HostelBooking(),
                                               arguments: {
                                                 //-------------------------------------------------
                                                 // a simple argument for sending data strieght to the email
                                                 //---------------------------------------------------
-                                                'hostelName': hostelsArguments[
-                                                    'hostelsName'],
-                                                'hostelsEmail':
-                                                    hostelsArguments[
-                                                        'hostelsEmail'],
+                                                'hostelName': hostelName,
+                                                'hostelEmail': hostelEmail,
                                                 'hostelAmount': prices[index],
                                                 'personsInRoom': index + 1,
                                               });
@@ -160,7 +161,7 @@ class Detail extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
-                                image: AssetImage(imageUrl),
+                                image: AssetImage(imageUrls),
                                 fit: BoxFit.cover,
                               ),
                             ),

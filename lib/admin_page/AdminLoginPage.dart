@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'adminUpload.dart';
 import 'fade_animation.dart';
 
@@ -12,6 +12,12 @@ class AdminLogin extends StatefulWidget {
 }
 
 class _AdminLoginState extends State<AdminLogin> {
+  final hostelManegerEmail = TextEditingController();
+  final hostelManegerPassword = TextEditingController();
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +107,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                     child: Container(
                                       margin: const EdgeInsets.only(left: 10),
                                       child: TextFormField(
+                                        controller: hostelManegerEmail,
                                         maxLines: 1,
                                         decoration: const InputDecoration(
                                           label: Text(" E-mail ..."),
@@ -141,6 +148,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                     child: Container(
                                       margin: const EdgeInsets.only(left: 10),
                                       child: TextFormField(
+                                        controller:hostelManegerPassword,
                                         maxLines: 1,
                                         decoration: const InputDecoration(
                                           label: Text(" Password ..."),
