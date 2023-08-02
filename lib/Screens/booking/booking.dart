@@ -53,21 +53,22 @@ class _HostelBookingState extends State<HostelBooking> {
     final String hostelName = arguments['hostelName'];
     final int hostelAmount = arguments['hostelAmount'];
     final int personsInRoom = arguments['personsInRoom'];
-    final String hostelEmail = arguments['hostelEmail'];
+    final String agentEmail = arguments['agentEmail'];
 
 
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.purple.shade600,
-              Colors.deepPurpleAccent,
-            ],
-          ),
+        decoration: const BoxDecoration(
+          color: Color(0xFFcbe6f6),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: [
+          //     Color(0xFFcbe6f6),
+          //     Colors.blue,
+          //   ],
+          // ),
         ),
         child: Column(
           children: [
@@ -76,14 +77,14 @@ class _HostelBookingState extends State<HostelBooking> {
               child: FadeAnimation(
                 2,
                 Column(
-                  children:  [
+                  children:  const [
                     Text(
-                      "Your Responce will be sent to the Hostel Managers for verification $hostelEmail",
+                      "Your response will be sent to an agent for validation",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(
@@ -93,18 +94,18 @@ class _HostelBookingState extends State<HostelBooking> {
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Divider(
                         thickness: 5,
-                        color: Colors.yellow,
+                        color: Colors.redAccent,
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Text(
-                        "if your selected room is available, you will be notified by mail/sms with a payment link to make payment",
+                        "A payment link will be sent to your email or phone if your selected room is available",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: Colors.yellow,
+                          color: Colors.red,
                         ),
                       ),
                     ),
@@ -112,7 +113,7 @@ class _HostelBookingState extends State<HostelBooking> {
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Divider(
                         thickness: 5,
-                        color: Colors.yellow,
+                        color: Colors.redAccent,
                       ),
                     ),
                   ],
@@ -141,7 +142,7 @@ class _HostelBookingState extends State<HostelBooking> {
                           2,
                           Center(
                             child: Text(
-                              "Please Upload the right information ",
+                              "We cannot process your request if the information is incorrect",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 25,
@@ -159,15 +160,15 @@ class _HostelBookingState extends State<HostelBooking> {
                       MyTextField(
                         height: 70,
                         hintext: 'Name',
-                        iconData: Icons.home,
-                        controller: _nameController,
+                        iconData: Icons.person_2_outlined,
+                        controller: _nameController, keyboardType: TextInputType.name,
                       ),
                       //-------------------------------------------------
                       // Adress text field
                       //---------------------------------------------------
                       MyTextField(
                         hintext: 'Home Address',
-                        iconData: Icons.home,
+                        iconData: Icons.home,keyboardType: TextInputType.text,
                         controller: _homeaddressController, height: 70,
                       ),
                       //-------------------------------------------------
@@ -176,70 +177,67 @@ class _HostelBookingState extends State<HostelBooking> {
                       MyTextField(
                         hintext: 'Contact Number',
                         iconData: Icons.contact_emergency,
-                        controller: _contactNumberController, height: 70,
+                        controller: _contactNumberController,
+                         height: 70, 
+                         keyboardType: TextInputType.phone,
                       ),
                       //-------------------------------------------------
                       // comment text field
                       //---------------------------------------------------
 
-                      MyTextField(
-                        hintext: 'comment',
-                        iconData: Icons.comment,
-                        controller: _commentController, height: 130,
+                      FadeAnimation(
+                        2,
+                        Container(
+                          width: double.infinity,
+                          height: 130,
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 20,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                            vertical: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue,
+                              width: 1,
+                            ),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.blue,
+                                blurRadius: 10,
+                                offset: Offset(1, 1),
+                              ),
+                            ],
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: TextFormField(
+                                    minLines: 6,
+                                    maxLines: null,
+                                    keyboardType: TextInputType.multiline,
+                                    decoration: const InputDecoration(
+                                      alignLabelWithHint: true,
+                                      border: InputBorder.none,
+                                      label: Text('comment'),
+                                    ),
+                                    controller: _commentController,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      // FadeAnimation(
-                      //   2,
-                      //   Container(
-                      //     width: double.infinity,
-                      //     height: 130,
-                      //     margin: const EdgeInsets.symmetric(
-                      //       horizontal: 20,
-                      //       vertical: 20,
-                      //     ),
-                      //     padding: const EdgeInsets.symmetric(
-                      //       horizontal: 15,
-                      //       vertical: 5,
-                      //     ),
-                      //     decoration: BoxDecoration(
-                      //       border: Border.all(
-                      //         color: Colors.purpleAccent,
-                      //         width: 1,
-                      //       ),
-                      //       boxShadow: const [
-                      //         BoxShadow(
-                      //           color: Colors.purpleAccent,
-                      //           blurRadius: 10,
-                      //           offset: Offset(1, 1),
-                      //         ),
-                      //       ],
-                      //       color: Colors.white,
-                      //       borderRadius: const BorderRadius.all(
-                      //         Radius.circular(20),
-                      //       ),
-                      //     ),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.start,
-                      //       children: [
-                      //         Expanded(
-                      //           child: Container(
-                      //             margin: const EdgeInsets.only(left: 10),
-                      //             child: TextFormField(
-                      //               minLines: 6,
-                      //               maxLines: null,
-                      //               keyboardType: TextInputType.multiline,
-                      //               decoration: const InputDecoration(
-                      //                 alignLabelWithHint: true,
-                      //                 border: InputBorder.none,
-                      //                 label: Text('comment'),
-                      //               ),
-                      //               controller: _commentController,
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
                       const SizedBox(height: 10),
                       FadeAnimation(
                         2,
@@ -256,7 +254,7 @@ class _HostelBookingState extends State<HostelBooking> {
                                  '''
 USERS SELECTIONS
 ------------------------\n
-Hostel Name: $hostelName $hostelEmail
+Hostel Name: $hostelName
 ________________________\n
 Amount: GHS $hostelAmount
 _________________________
@@ -277,9 +275,9 @@ ________________________\n
 
                             var mail = MailOptions(
                               //-------------------------------------------------
-                              // here's the hostel managers email address
+                              // here's the hostel managers email address "hostelEmail"
                               //---------------------------------------------------
-                              recipients: [hostelEmail],
+                              recipients: [agentEmail,'iakwasititus@gmail.com'],
                               ccRecipients: ['www.akwasititus@gmail.com'],
                               subject: 'New Hostel Booking from $_name',
                               body: emailBody,
@@ -287,8 +285,8 @@ ________________________\n
                             FlutterMailer.send(mail);
                           },
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.purpleAccent,
-                            shadowColor: Colors.purpleAccent,
+                            foregroundColor: const Color(0xFFcbe6f6),
+                            shadowColor: Colors.blue,
                             elevation: 18,
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(
@@ -299,8 +297,8 @@ ________________________\n
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 colors: [
-                                  Colors.purpleAccent,
-                                  Colors.deepPurpleAccent,
+                                  Color(0xFFcbe6f6),
+                                  Colors.blue,
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(20),

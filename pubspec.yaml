@@ -47,6 +47,8 @@ dependencies:
   cloud_firestore: ^4.8.3
   firebase_core: ^2.15.0
   firebase_storage: ^11.2.5
+  url_launcher:
+  youtube_player_flutter: ^8.1.2
 
   
 dev_dependencies:

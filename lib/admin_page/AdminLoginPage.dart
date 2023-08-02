@@ -15,9 +15,6 @@ class _AdminLoginState extends State<AdminLogin> {
   final hostelManegerEmail = TextEditingController();
   final hostelManegerPassword = TextEditingController();
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +36,7 @@ class _AdminLoginState extends State<AdminLogin> {
                 child: const FadeAnimation(
                   2,
                   Text(
-                    "Hostel Manager",
+                    "Agent",
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
@@ -70,7 +67,7 @@ class _AdminLoginState extends State<AdminLogin> {
                             child: const FadeAnimation(
                               2,
                               Text(
-                                "Hostel Manager Login",
+                                "Agent Login",
                                 style: TextStyle(
                                     fontSize: 35,
                                     color: Colors.black87,
@@ -148,7 +145,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                     child: Container(
                                       margin: const EdgeInsets.only(left: 10),
                                       child: TextFormField(
-                                        controller:hostelManegerPassword,
+                                        controller: hostelManegerPassword,
                                         maxLines: 1,
                                         decoration: const InputDecoration(
                                           label: Text(" Password ..."),
@@ -164,110 +161,104 @@ class _AdminLoginState extends State<AdminLogin> {
                           height: 20,
                         ),
                         Column(
-                          
-                         
                           children: [
                             FadeAnimation(
-                          2,
-                          ElevatedButton(
-                            onPressed: () {
-                              Get.off(const AdminUpload());
-                            },
-                            style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.purpleAccent,
-                                 shadowColor: Colors.purpleAccent,
-                                elevation: 18,
-                                padding: EdgeInsets.zero,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20))),
-                            child: Ink(
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(colors: [
-                                    Colors.purpleAccent,
-                                    Colors.deepPurpleAccent
-                                  ]),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Container(
-                                width: 200,
-                                height: 50,
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 60),
-
-                        Column(
-                        children: [
-                          FadeAnimation(
-                          2,
-                          Container(
-                              width: double.infinity,
-                              height: 30,
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.only(top: 5),
-                              child: const Text(
-                                "Need an Account?",
-                                style: TextStyle(
-                                    color: Colors.black54, fontSize: 15),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10,right: 10),
-                          child: FadeAnimation(
-                            2,
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  onPrimary: Colors.purpleAccent,
-                                  shadowColor: Colors.purpleAccent,
-                                  elevation: 18,
-                                  padding: EdgeInsets.zero,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20))),
-                              child: Ink(
-                                decoration: BoxDecoration(
-                                    gradient: const LinearGradient(colors: [
-                                      Colors.purpleAccent,
-                                      Colors.deepPurpleAccent
-                                    ]),
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 50,
-                                  alignment: Alignment.center,
-                                  child: const Text(
-                                    'Register as a Hostel Manager',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
+                              2,
+                              ElevatedButton(
+                                onPressed: () {
+                                  Get.off(const AdminUpload());
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.purpleAccent,
+                                    shadowColor: Colors.purpleAccent,
+                                    elevation: 18,
+                                    padding: EdgeInsets.zero,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20))),
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                      gradient: const LinearGradient(colors: [
+                                        Colors.purpleAccent,
+                                        Colors.deepPurpleAccent
+                                      ]),
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Container(
+                                    width: 200,
+                                    height: 50,
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      'Login',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-
-                        ],
-                       )
-
+                            const SizedBox(height: 60),
+                            Column(
+                              children: [
+                                FadeAnimation(
+                                  2,
+                                  Container(
+                                      width: double.infinity,
+                                      height: 30,
+                                      alignment: Alignment.center,
+                                      margin: const EdgeInsets.only(top: 5),
+                                      child: const Text(
+                                        "Need an Account?",
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15),
+                                      )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: FadeAnimation(
+                                    2,
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                          onPrimary: Colors.purpleAccent,
+                                          shadowColor: Colors.purpleAccent,
+                                          elevation: 18,
+                                          padding: EdgeInsets.zero,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20))),
+                                      child: Ink(
+                                        decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                                colors: [
+                                                  Colors.purpleAccent,
+                                                  Colors.deepPurpleAccent
+                                                ]),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            'Register as a Agent',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         )
-                        
-                        
-                       
-                        
-                        
-                        
                       ],
                     ),
                   )),

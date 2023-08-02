@@ -6,12 +6,14 @@ class MyTextField extends StatelessWidget {
   final IconData iconData;
   final TextEditingController controller;
   final double height;
+  final TextInputType keyboardType;
 
   const MyTextField({
     Key? key,
-    required this.hintext,
     required this.iconData,
-    required this.controller, required this.height,
+    required this.controller, 
+    required this.height,
+    required this.keyboardType, required this.hintext,
   }) : super(key: key);
 
   @override
@@ -24,10 +26,10 @@ class MyTextField extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.purpleAccent, width: 1),
+          border: Border.all(color: Colors.blue, width: 1),
           boxShadow: const [
             BoxShadow(
-              color: Colors.purpleAccent,
+              color: Colors.blue,
               blurRadius: 10,
               offset: Offset(1, 1),
             ),
@@ -43,6 +45,7 @@ class MyTextField extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 10),
                 child: TextFormField(
+                  keyboardType: keyboardType, 
                   controller: controller,
                   maxLines: 1,
                   decoration: InputDecoration(

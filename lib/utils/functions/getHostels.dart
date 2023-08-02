@@ -13,7 +13,6 @@ class GetHostels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // get userCollection
 
     CollectionReference hostels =
@@ -26,36 +25,35 @@ class GetHostels extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
 
-                List imageUrls = [
-  'assets/images/hostel11.jpg',
-  'assets/images/hostel22.jpg',
-  'assets/images/hostel33.jpeg',
-  'assets/images/hostel44.jpeg',
-];
+            List imageUrls = [
+              'assets/images/hostel11.jpg',
+              'assets/images/hostel22.jpg',
+              'assets/images/hostel33.jpeg',
+              'assets/images/hostel44.jpeg',
+            ];
 
-                final hostel = imageUrls;
+            final hostel = imageUrls;
 
             return GestureDetector(
               onTap: () {
                 Get.to(const Detail(),
-
                     arguments: {
-                    //-------------------------------------------------
-                    // these are argument from the model page that are being passed to the detailed screen
-                    //---------------------------------------------------
-                    'hostelName': data['hostelName'].toString(),
-                     'hostelEmail':
-                         data['hostelEmail'].toString(),
-                    'hostelDesc': data['hostelDesc'].toString(),
-                     'hostelLocation':
-                         data['hostelLocation'].toString(),
-                     'imageLink': data['imageLink'],
-                    'hostelRooms': imageUrls,
-                    //'numberOfRoomAvailable': documentSnapshot['numberOfRoomAvailable'].//toString(),
+                      //-------------------------------------------------
+                      // these are argument from the model page that are being passed to the detailed screen
+                      //---------------------------------------------------
+                      'hostelName': data['hostelName'].toString(),
+                      'agentEmail': data['agentEmail'].toString(),
+                      'hostelDesc': data['hostelDesc'].toString(),
+                      'hostelLocation': data['hostelLocation'].toString(),
+                      'imageLink': data['imageLink'],
+                      'hostelRooms': imageUrls,
+                      'roomType1': data['oneinaRoom'],
+                      'roomType2': data['twoInaRoom'],
+                      'roomType3': data['threeinaRoom'],
+                      'roomType4': data['fourinaRoom'],
                     },
                     duration: const Duration(seconds: 1),
                     transition: Transition.native);
-                    
               },
               child: Container(
                 height: 100,
@@ -125,7 +123,7 @@ class GetHostels extends StatelessWidget {
               ),
             );
 
-            //Text('hostel: ${data['hostelName']}');
+            
           }
           return const Text('loading...');
         });

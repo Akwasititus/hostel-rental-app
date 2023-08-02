@@ -28,7 +28,13 @@ class _AdminUploadState extends State<AdminUpload> {
   final _hostelLocationController = TextEditingController();
   final _hostelDescController = TextEditingController();
   //final _numberOfRoomAvailableController = TextEditingController();
-  final _hostelEmailController = TextEditingController();
+  final _agentEmailController = TextEditingController();
+
+  // room types
+  final _oneinaRoomController = TextEditingController();
+  final _twoInaRoomController = TextEditingController();
+  final _threeinaRoomController = TextEditingController();
+  final _fourinaRoomController = TextEditingController();
 
   
 
@@ -49,16 +55,29 @@ class _AdminUploadState extends State<AdminUpload> {
     String hostelNameController = _hostelNameController.text; 
     String hostelLocationController = _hostelLocationController.text;
     String hostelDescController = _hostelDescController.text;
-    String hostelEmailController = _hostelEmailController.text;
-    // String numberOfRoomAvailableController =
-    //     _numberOfRoomAvailableController.text;
+    String agentEmailController = _agentEmailController.text;
+
+    // room type
+    String oneinaRoomController = _oneinaRoomController.text;
+    String twoInaRoomController = _twoInaRoomController.text;
+    String threeinaRoomController = _threeinaRoomController.text;
+    String fourinaRoomController = _fourinaRoomController.text;
+
+   
 
     String resp = await StoreData().saveData(
         hostelName: hostelNameController,
         hostelLocation: hostelLocationController,
         hostelDesc: hostelDescController,
-        hostelEmail: hostelEmailController,
-        //numberOfRoomAvailable: numberOfRoomAvailableController,
+        agentEmail: agentEmailController,
+        
+
+        // room type
+        oneinaRoom: double.parse(oneinaRoomController),
+        twoInaRoom: double.parse(twoInaRoomController),
+        threeinaRoom: double.parse(threeinaRoomController),
+        fourinaRoom: double.parse(fourinaRoomController),
+        
         file: _image!);
   }
 
@@ -69,8 +88,8 @@ class _AdminUploadState extends State<AdminUpload> {
     _hostelNameController.dispose();
     _hostelLocationController.dispose();
     _hostelDescController.dispose();
-    _hostelEmailController.dispose();
-    //_numberOfRoomAvailableController.dispose();
+    _agentEmailController.dispose();
+    
     super.dispose();
   }
 
@@ -143,30 +162,47 @@ class _AdminUploadState extends State<AdminUpload> {
                           hintext: 'Hostel Name',
                           iconData: Icons.home,
                           controller: _hostelNameController,
-                          height: 70,
+                          height: 70, keyboardType: TextInputType.text,
                         ),
                         MyTextField(
                           hintext: 'Hostel Location',
                           iconData: Icons.room_outlined,
                           controller: _hostelLocationController,
-                          height: 70,
+                          height: 70, keyboardType: TextInputType.text,
                         ),
                         MyTextField(
-                          hintext: 'Hostel Email',
+                          hintext: 'Agent Email',
                           iconData: Icons.email_rounded,
-                          controller: _hostelEmailController,
-                          height: 70,
+                          controller: _agentEmailController,
+                          height: 70, keyboardType: TextInputType.emailAddress,
                         ),
-                        // MyTextField(
-                        //   hintext: 'Number of Rooms Available',
-                        //   iconData: Icons.location_city,
-                        //   controller: _numberOfRoomAvailableController,
-                        //   height: 70,
-                        // ),
-                        // MyTextField(
-                        //   hintext: 'Hostel Describtion',
-                        //   iconData: Icons.comment, controller: _hostelLocationController, height: 130,
-                        // ),
+
+                        //Room Types
+                        const Text('Enter Fixed Amount for the Room Types'),
+                         MyTextField(
+                          hintext: 'One in a Room',
+                          iconData: Icons.one_k,
+                          controller: _oneinaRoomController,
+                          height: 70, keyboardType: TextInputType.number,
+                        ),
+                         MyTextField(
+                          hintext: 'Two in a Room',
+                          iconData: Icons.two_k_outlined,
+                          controller: _twoInaRoomController,
+                          height: 70,keyboardType: TextInputType.number,
+                        ),
+                         MyTextField(
+                          hintext: 'Three in a Room',
+                          iconData: Icons.three_k,
+                          controller: _threeinaRoomController,
+                          height: 70,keyboardType: TextInputType.number,
+                        ),
+                         MyTextField(
+                          hintext: 'four in a Room',
+                          iconData: Icons.four_k_outlined,
+                          controller: _fourinaRoomController,
+                          height: 70,keyboardType: TextInputType.number,
+                        ),
                         FadeAnimation(
                           2,
                           Container(
@@ -239,12 +275,7 @@ class _AdminUploadState extends State<AdminUpload> {
                                         margin: const EdgeInsets.only(left: 10),
                                         child: Column(
                                           children: [
-                                            // Icon(
-                                            //   Icons.image,
-                                            //   size: 100,
-                                            //   color: Colors.grey,
-                                            // ),
-
+                                            
                                             SizedBox(
                                               width: 100,
                                               height: 100,
@@ -308,7 +339,7 @@ class _AdminUploadState extends State<AdminUpload> {
                           2,
                           ElevatedButton(
                             onPressed: () {
-                              // function to save the data to firestore
+                              /// function to save the data to firestore
                               savedData();
 
                               /// success message

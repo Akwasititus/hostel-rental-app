@@ -22,26 +22,47 @@ class StoreData {
     required String hostelName,
     required String hostelLocation,
     required String hostelDesc,
-    required String hostelEmail,
-    //required String numberOfRoomAvailable,
+    required String agentEmail,
+
+    //room type
+     double? oneinaRoom,
+     double? twoInaRoom,
+     double? threeinaRoom,
+     double? fourinaRoom,
+    
     required Uint8List file,
   }) async {
     String resp = "some error occurred";
 
-    try {
+    try { 
       if (hostelName.isNotEmpty ||
           hostelLocation.isNotEmpty ||
-         // numberOfRoomAvailable.isNotEmpty ||
           hostelDesc.isNotEmpty ||
-          hostelEmail.isNotEmpty 
+          agentEmail.isNotEmpty 
+
+          // //room type
+          // oneinaRoom != "" ||
+          // twoInaRoom != ""  ||
+          // threeinaRoom != ""  ||
+          // fourinaRoom != ""  
+
+
           ) {
         String imageUrl = await uploadImageToStorage('profileImage', file);
         await _firestore.collection('addHostel').add({
           'hostelName': hostelName,
           'hostelLocation': hostelLocation,
           'hostelDesc': hostelDesc,
-          'hostelEmail': hostelEmail,
-          //'numberOfRoomAvailable': numberOfRoomAvailable,
+          'hostelEmail': agentEmail,
+
+
+          //room types
+          'oneinaRoom': oneinaRoom,
+          'twoInaRoom': twoInaRoom,
+          'threeinaRoom': threeinaRoom,
+          'fourinaRoom': fourinaRoom,
+
+          // image URL
           'imageLink': imageUrl,
         });
 
@@ -49,6 +70,9 @@ class StoreData {
       }
     } catch (err) {
       resp = err.toString();
+      //-----------------------------------------------------------------------
+      print('resp $resp');
+      //------------------------------------------------------------
     }
     return resp;
   }

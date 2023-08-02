@@ -27,13 +27,17 @@ class _UENRState extends State<UENR> {
   //-------------------------------------------------------------
   final TextFieldController = TextEditingController();
 
-  // final CollectionReference _collectionReference =
-  //     FirebaseFirestore.instance.collection('addHostel');
+  
 
-  // dicument IDs
+//-------------------------------------------------------------
+// dicument IDs
+//-------------------------------------------------------------  
   List<String> docIDs1 = [];
 
-  //getDocs Ids
+
+//-------------------------------------------------------------
+// getDocs Ids1
+//-------------------------------------------------------------  
   Future getDocId1() async {
     await FirebaseFirestore.instance
         .collection('addHostel')
@@ -43,18 +47,11 @@ class _UENRState extends State<UENR> {
             }));
   }
 
-  // dicument IDs
+//-------------------------------------------------------------
+  // dicument IDs2
+//-------------------------------------------------------------  
   List<String> docIDs2 = [];
 
-  //getDocs Ids
-  // Future getDocId2() async {
-  //   await FirebaseFirestore.instance
-  //       .collection('addResentHostel')
-  //       .get()
-  //       .then((snapshot2) => snapshot2.docs.forEach((docment2) {
-  //             docIDs2.add(docment2.reference.id);
-  //           }));
-  // }
 
   Future<List<String>> getDocId2() async {
     QuerySnapshot snapshot2 =
@@ -62,15 +59,13 @@ class _UENRState extends State<UENR> {
     return snapshot2.docs.map((document2) => document2.id).toList();
   }
 
-  // final CollectionReference _collectionReference =
-  //     FirebaseFirestore.instance.collection('addResentHostel');
-
   @override
   Widget build(BuildContext context) {
     //-------------------------------------------------------------
     // media query for checking screen sizes
     //-------------------------------------------------------------
     var deviceSize = MediaQuery.of(context).size;
+    
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFcbe6f6),
@@ -172,28 +167,8 @@ class _UENRState extends State<UENR> {
                             return Padding(
                                 padding: const EdgeInsets.all(7.0),
                                 child:
-                                 GestureDetector(
-                                    onTap: () {
-                                      Get.to(const Detail(),
-                                          //arguments: {
-                                            //-------------------------------------------------
-                                            // these are argument from the model page that are being passed to the detailed screen
-                                            //---------------------------------------------------
-                                            ///'hostelName': hostelName.toString(),
-                                            // 'hostelEmail':
-                                            //     hostelEmail.toString(),
-                                            //'hostelDesc': hostelDesc.toString(),
-                                            /// 'hostelLocation':
-                                            //     hostelLocation.toString(),
-                                            /// 'imageUrl': imageUrl
-                                            //'hostelRooms': hostel.hostelRooms.toString(),
-                                            //'numberOfRoomAvailable': documentSnapshot['numberOfRoomAvailable'].//toString(),
-                                          //},
-                                          duration: const Duration(seconds: 1),
-                                          transition: Transition.native);
-                                    },
-                                    child: GetHostels(
-                                        documentId: docIDs1[index])));
+                                 GetHostels(
+                                     documentId: docIDs1[index]));
                           },
                         ),
                       );
@@ -206,8 +181,6 @@ class _UENRState extends State<UENR> {
                 SizedBox(
                   height: 300,
                   child:
-
-                      //final hostel1 = getAllHostles[index];
                       FutureBuilder<List<String>>(
                     future: getDocId2(),
                     builder: (context, snapshot) {
