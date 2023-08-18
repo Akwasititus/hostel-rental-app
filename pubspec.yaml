@@ -49,11 +49,23 @@ dependencies:
   firebase_storage: ^11.2.5
   url_launcher:
   youtube_player_flutter: ^8.1.2
+  firebase_auth: ^4.7.2
+  firebase_messaging: ^14.6.5
+  shared_preferences: ^2.2.0
+  device_preview: ^1.1.0
 
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_native_splash:  
+
+flutter_native_splash:  
+  image: 'assets/images/logo.png'
+  color: '#ffffff'
+  android: true
+  ios: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

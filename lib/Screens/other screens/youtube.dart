@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-
 class YouTubePlayerScreen extends StatelessWidget {
   final String videoId;
 
@@ -10,19 +9,20 @@ class YouTubePlayerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YoutubePlayer(
-          controller: YoutubePlayerController(
-            initialVideoId: videoId,
-            flags: const YoutubePlayerFlags(
-              autoPlay: true,
-              mute: false,
-            ),
-          ),
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.blueAccent,
-          progressColors: const ProgressBarColors(
-            playedColor: Colors.blue,
-            handleColor: Colors.blueAccent,
-          ),
-        );
+      controller: YoutubePlayerController(
+        initialVideoId: videoId,
+        flags: const YoutubePlayerFlags(
+          hideThumbnail: false,
+          autoPlay: false,
+          mute: false,
+        ),
+      ),
+      showVideoProgressIndicator: true,
+      progressIndicatorColor: Colors.blueAccent,
+      progressColors: const ProgressBarColors(
+        playedColor: Colors.blue,
+        handleColor: Colors.blueAccent,
+      ),
+    );
   }
 }

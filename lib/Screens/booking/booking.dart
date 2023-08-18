@@ -7,8 +7,6 @@ import '../../admin_page/fade_animation.dart';
 import '../../utils/widgets/textFields.dart';
 
 class HostelBooking extends StatefulWidget {
-  
-
   @override
   _HostelBookingState createState() => _HostelBookingState();
 }
@@ -21,7 +19,6 @@ class _HostelBookingState extends State<HostelBooking> {
   final _homeaddressController = TextEditingController();
   final _contactNumberController = TextEditingController();
   final _commentController = TextEditingController();
-
 
   //-------------------------------------------------
   // variable decleartion for holding the values from the text editing controllers
@@ -55,20 +52,11 @@ class _HostelBookingState extends State<HostelBooking> {
     final int personsInRoom = arguments['personsInRoom'];
     final String agentEmail = arguments['agentEmail'];
 
-
     return Scaffold(
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xFFcbe6f6),
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [
-          //     Color(0xFFcbe6f6),
-          //     Colors.blue,
-          //   ],
-          // ),
         ),
         child: Column(
           children: [
@@ -77,7 +65,7 @@ class _HostelBookingState extends State<HostelBooking> {
               child: FadeAnimation(
                 2,
                 Column(
-                  children:  const [
+                  children: const [
                     Text(
                       "Your response will be sent to an agent for validation",
                       textAlign: TextAlign.center,
@@ -135,21 +123,19 @@ class _HostelBookingState extends State<HostelBooking> {
                   child: Column(
                     children: [
                       const SizedBox(height: 50),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        margin: const EdgeInsets.only(left: 22, bottom: 20),
-                        child: const FadeAnimation(
-                          2,
-                          Center(
-                            child: Text(
-                              "We cannot process your request if the information is incorrect",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.black87,
-                                letterSpacing: 2,
-                                fontFamily: "Lobster",
-                              ),
+                      FadeAnimation(
+                        2,
+                        Container(
+                          alignment: Alignment.topLeft,
+                          margin: const EdgeInsets.only(left: 22, bottom: 20),
+                          child: const Text(
+                            "We cannot process your request if the information is incorrect",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.black87,
+                              letterSpacing: 2,
+                              fontFamily: "Lobster",
                             ),
                           ),
                         ),
@@ -161,15 +147,18 @@ class _HostelBookingState extends State<HostelBooking> {
                         height: 70,
                         hintext: 'Name',
                         iconData: Icons.person_2_outlined,
-                        controller: _nameController, keyboardType: TextInputType.name,
+                        controller: _nameController,
+                        keyboardType: TextInputType.name,
                       ),
                       //-------------------------------------------------
                       // Adress text field
                       //---------------------------------------------------
                       MyTextField(
                         hintext: 'Home Address',
-                        iconData: Icons.home,keyboardType: TextInputType.text,
-                        controller: _homeaddressController, height: 70,
+                        iconData: Icons.home,
+                        keyboardType: TextInputType.text,
+                        controller: _homeaddressController,
+                        height: 70,
                       ),
                       //-------------------------------------------------
                       // contact text field
@@ -178,8 +167,8 @@ class _HostelBookingState extends State<HostelBooking> {
                         hintext: 'Contact Number',
                         iconData: Icons.contact_emergency,
                         controller: _contactNumberController,
-                         height: 70, 
-                         keyboardType: TextInputType.phone,
+                        height: 70,
+                        keyboardType: TextInputType.phone,
                       ),
                       //-------------------------------------------------
                       // comment text field
@@ -250,8 +239,7 @@ class _HostelBookingState extends State<HostelBooking> {
                             //-------------------------------------------------
                             // this has the users selection and the users details to be displayed on the email
                             //---------------------------------------------------
-                            String emailBody =
-                                 '''
+                            String emailBody = '''
 USERS SELECTIONS
 ------------------------\n
 Hostel Name: $hostelName
@@ -277,7 +265,10 @@ ________________________\n
                               //-------------------------------------------------
                               // here's the hostel managers email address "hostelEmail"
                               //---------------------------------------------------
-                              recipients: [agentEmail,'iakwasititus@gmail.com'],
+                              recipients: [
+                                agentEmail,
+                                'iakwasititus@gmail.com'
+                              ],
                               ccRecipients: ['www.akwasititus@gmail.com'],
                               subject: 'New Hostel Booking from $_name',
                               body: emailBody,

@@ -50,7 +50,7 @@ class MyTextField extends StatelessWidget {
                   maxLines: 1,
                   decoration: InputDecoration(
                     labelText: hintext,
-                    border: InputBorder.none,
+                    border: OutlineInputBorder(),
                   ),
                 ),
               ),

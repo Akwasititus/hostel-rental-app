@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../Screens/detailPage.dart';
 import '../constants.dart';
 
 
@@ -11,7 +14,7 @@ import '../constants.dart';
 class GetResentHostels extends StatelessWidget {
   final String documentId2;
 
-  const GetResentHostels({required this.documentId2});
+  const GetResentHostels({super.key, required this.documentId2});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,13 @@ class GetResentHostels extends StatelessWidget {
           Map<String, dynamic> rdata =
               snapshot.data!.data() as Map<String, dynamic>;
 
+              List imageUrls = [
+              'assets/images/hostel11.jpg',
+              'assets/images/hostel22.jpg',
+              'assets/images/hostel33.jpeg',
+              'assets/images/hostel44.jpeg',
+            ];
+
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -37,6 +47,26 @@ class GetResentHostels extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: ListTile(
+                  onTap: () {
+                    Get.to( Detail(),
+                    arguments: {
+                      //-------------------------------------------------
+                      // these are argument from the model page that are being passed to the detailed screen
+                      //---------------------------------------------------
+                      'hostelName': rdata['rHostelName'].toString(),
+                      'agentEmail': rdata['rHostelEmail'].toString(),
+                      'hostelDesc': rdata['rHostelDesc'].toString(),
+                      'hostelLocation': rdata['rHostelLocation'].toString(),
+                      'imageLink': rdata['rHostelImageLink'],
+                      'hostelRooms': imageUrls,
+                      'roomType1': rdata['oneinaRoom'],
+                      'roomType2': rdata['twoInaRoom'],
+                      'roomType3': rdata['threeinaRoom'],
+                      'roomType4': rdata['fourinaRoom'],
+                    },
+                    duration: const Duration(seconds: 1),
+                    transition: Transition.native);
+                  },
                   title: Text(rdata['rHostelName'], style: AppBlackTextStyle.texth1),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

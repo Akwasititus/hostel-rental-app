@@ -29,6 +29,7 @@ class StoreData {
      double? twoInaRoom,
      double? threeinaRoom,
      double? fourinaRoom,
+     
     
     required Uint8List file,
   }) async {

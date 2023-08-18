@@ -20,8 +20,9 @@ class _MyHomeState extends State<MyHome> {
   final List<Widget> _hostels = [
     const UENR(),
     Column(
-      children:  [
-        Center(child: Column(
+      children: [
+        Center(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             CircularProgressIndicator(),
@@ -31,8 +32,9 @@ class _MyHomeState extends State<MyHome> {
       ],
     ),
     Column(
-      children:  [
-        Center(child: Column(
+      children: [
+        Center(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             CircularProgressIndicator(),
@@ -41,11 +43,6 @@ class _MyHomeState extends State<MyHome> {
         )),
       ],
     ),
-    
-    
-    
-    
-    
   ];
 
   @override

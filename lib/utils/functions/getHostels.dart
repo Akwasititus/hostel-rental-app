@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import '../../Models/hostelCardModel.dart';
 import '../../Screens/detailPage.dart';
 
 import '../constants.dart';
@@ -36,7 +35,7 @@ class GetHostels extends StatelessWidget {
 
             return GestureDetector(
               onTap: () {
-                Get.to(const Detail(),
+                Get.to( Detail(),
                     arguments: {
                       //-------------------------------------------------
                       // these are argument from the model page that are being passed to the detailed screen

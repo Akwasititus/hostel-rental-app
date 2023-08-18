@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get.dart';
-import '../../Models/hostelCardModel.dart';
 import '../../utils/constants.dart';
 
 import '../../utils/functions/getHostels.dart';
 import '../../utils/functions/getResentHostels.dart';
-import '../detailPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../user account/registerUser.dart';
 
 class UENR extends StatefulWidget {
   const UENR({super.key});
@@ -25,19 +26,28 @@ class _UENRState extends State<UENR> {
   //-------------------------------------------------------------
   //  controller for the search
   //-------------------------------------------------------------
-  final TextFieldController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
-  
+  List<String> allHostels = []; // List of all hostels
+  List<String> filteredHostels = []; // List of hostels after filtering
 
+  void filterHostels(String query) {
+    setState(() {
+      filteredHostels = allHostels
+          .where((hostelName) =>
+              hostelName.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+ 
 //-------------------------------------------------------------
 // dicument IDs
-//-------------------------------------------------------------  
+//-------------------------------------------------------------
   List<String> docIDs1 = [];
-
 
 //-------------------------------------------------------------
 // getDocs Ids1
-//-------------------------------------------------------------  
+//-------------------------------------------------------------
   Future getDocId1() async {
     await FirebaseFirestore.instance
         .collection('addHostel')
@@ -49,9 +59,8 @@ class _UENRState extends State<UENR> {
 
 //-------------------------------------------------------------
   // dicument IDs2
-//-------------------------------------------------------------  
+//-------------------------------------------------------------
   List<String> docIDs2 = [];
-
 
   Future<List<String>> getDocId2() async {
     QuerySnapshot snapshot2 =
@@ -60,12 +69,50 @@ class _UENRState extends State<UENR> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
+
+  String? obtuserName;
+  String? obtuserEmail;
+  String? obtuserCurrentSchool;
+  String? obtuserPassword;
+
+  void getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    obtuserName = prefs.getString('name');
+    obtuserEmail = prefs.getString('email');
+    obtuserCurrentSchool = prefs.getString('curentSchool');
+    obtuserPassword = prefs.getString('password');
+
+    setState(() {
+      // You might have additional UI update logic here
+      obtuserName = obtuserName;
+      obtuserEmail = obtuserEmail;
+      obtuserCurrentSchool = obtuserCurrentSchool;
+      obtuserPassword = obtuserPassword;
+    });
+  }
+
+  void getUserLogout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('name');
+    await prefs.remove('email');
+    await prefs.remove('curentSchool');
+    await prefs.remove('password');
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
     //-------------------------------------------------------------
     // media query for checking screen sizes
     //-------------------------------------------------------------
     var deviceSize = MediaQuery.of(context).size;
-    
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFFcbe6f6),
@@ -81,20 +128,57 @@ class _UENRState extends State<UENR> {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('Welcome Suleman 👋',
+                      children: [
+                        Text('Yoo! $obtuserName 👋',
                             style: AppBlackTextStyle.textpBlack),
-                        Text('Looking for a Place to Stay?',
+                        const Text('Looking for a Place to Stay?',
                             style: AppBlackTextStyle.texth1),
                       ],
                     ),
                     Expanded(child: Container()),
-                    const ProfilePicture(
-                      name: 'Johnson Suleman',
-                      tooltip: true,
-                      role: 'Student',
-                      radius: 20,
-                      fontsize: 21,
+                    Column(
+                      children: [
+                        ProfilePicture(
+                          name: '$obtuserName',
+                          tooltip: true,
+                          role: '$obtuserCurrentSchool',
+                          radius: 20,
+                          fontsize: 21,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text('Logout'),
+                                    content: const Text(
+                                        'Are you sure you want to logout?.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text('Nope'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          getUserLogout();
+                                          Get.to(
+        RegisterUser(),
+        duration: const Duration(seconds: 1),
+        transition: Transition.zoom,
+      );
+                                          
+                                        },
+                                        child: const Text('Yeah'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: const Text('Logout')),
+                      ],
                     ),
                   ],
                 ),
@@ -113,21 +197,24 @@ class _UENRState extends State<UENR> {
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
                     child: TextField(
-                      controller: TextFieldController,
+                      controller: _searchController,
+                      onChanged: filterHostels, // Call filter method on text change
                       decoration: InputDecoration(
                           prefixIcon: IconButton(
                             icon: const Icon(Icons.clear),
                             onPressed: () {
-                              TextFieldController.clear();
+                              _searchController.clear();
+                          filterHostels(''); // Clear filter
                             },
                           ),
                           suffixIcon: IconButton(
                             icon: const Icon(Icons.search),
                             onPressed: () {
                               /* do search */
+                              filterHostels(_searchController.text);
                             },
                           ),
-                          hintText: 'Lasvegas Hostle',
+                           hintText: 'Lasvegas Hostle',
                           border: InputBorder.none),
                     ),
                   ),
@@ -155,7 +242,7 @@ class _UENRState extends State<UENR> {
                 //-------------------------------------------------------------
                 // This list view shows a list of pupolar hostels
                 //-------------------------------------------------------------
-                FutureBuilder(
+                 FutureBuilder(
                     future: getDocId1(),
                     builder: (context, snapshot) {
                       return SizedBox(
@@ -166,9 +253,7 @@ class _UENRState extends State<UENR> {
                           itemBuilder: (context, index) {
                             return Padding(
                                 padding: const EdgeInsets.all(7.0),
-                                child:
-                                 GetHostels(
-                                     documentId: docIDs1[index]));
+                                child: GetHostels(documentId: docIDs1[index]));
                           },
                         ),
                       );
@@ -180,8 +265,7 @@ class _UENRState extends State<UENR> {
                 //-------------------------------------------------------------
                 SizedBox(
                   height: 300,
-                  child:
-                      FutureBuilder<List<String>>(
+                  child: FutureBuilder<List<String>>(
                     future: getDocId2(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.done) {
@@ -194,20 +278,8 @@ class _UENRState extends State<UENR> {
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(7.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Get.to(
-                                      const Detail(),
-                                      arguments: {
-                                        // ...
-                                      },
-                                      duration: const Duration(seconds: 1),
-                                      transition: Transition.native,
-                                    );
-                                  },
-                                  child: GetResentHostels(
-                                      documentId2: docIDs2[index]),
-                                ),
+                                child: GetResentHostels(
+                                    documentId2: docIDs2[index]),
                               );
                             },
                           ),
@@ -226,100 +298,3 @@ class _UENRState extends State<UENR> {
     );
   }
 }
-
-
-
-
-// StreamBuilder(
-//                                 stream: _collectionReference.snapshots(),
-//                                 builder: ((BuildContext context,
-//                                     AsyncSnapshot<QuerySnapshot>
-//                                         streamSnapshot) {
-//                                   return SizedBox(
-//                                     height: MediaQuery.of(context).size.height,
-//                                     child: ListView.builder(
-//                                         itemCount: streamSnapshot
-//                                             .data!.docs.reversed.length,
-//                                         itemBuilder: (context, index) {
-//                                           final DocumentSnapshot
-//                                               documentSnapshot =
-//                                               streamSnapshot.data!.docs[index];
-
-//                                           return Padding(
-//                                             padding: const EdgeInsets.all(8.0),
-//                                             child: Container(
-//                                               height: 100,
-//                                               width: double.infinity,
-//                                               decoration: BoxDecoration(
-//                                                 borderRadius:
-//                                                     BorderRadius.circular(10.0),
-//                                                 color: Colors.grey.shade100,
-//                                               ),
-//                                               child: Padding(
-//                                                 padding: const EdgeInsets.only(
-//                                                     top: 12.0),
-//                                                 child: ListTile(
-//                                                   title: Text(
-//                                                       documentSnapshot[
-//                                                           'rHostelName'],
-//                                                       style: AppBlackTextStyle
-//                                                           .texth1),
-//                                                   subtitle: Column(
-//                                                     crossAxisAlignment:
-//                                                         CrossAxisAlignment
-//                                                             .start,
-//                                                     children: [
-//                                                       const SizedBox(
-//                                                           height: 10),
-//                                                       Text(
-//                                                           documentSnapshot[
-//                                                               'rHostelLocation'],
-//                                                           style:
-//                                                               AppBlackTextStyle
-//                                                                   .texth2),
-
-//                                                       // Text(hostel1.numberOfRoomsAvailable,
-//                                                       //     style: AppBlackTextStyle.texth2),
-//                                                     ],
-//                                                   ),
-//                                                   leading: ClipRRect(
-//                                                     borderRadius:
-//                                                         BorderRadius.circular(
-//                                                             5),
-//                                                     child: Image.asset(
-//                                                       documentSnapshot[
-//                                                           'rHostelImageLink'],
-//                                                       fit: BoxFit.cover,
-//                                                     ),
-//                                                   ),
-//                                                   // trailing: Container(
-//                                                   //   height: 40,
-//                                                   //   width: 40,
-//                                                   //   decoration: BoxDecoration(
-//                                                   //       color: const Color(0xFFcbe6f6),
-//                                                   //       borderRadius:
-//                                                   //           BorderRadius.circular(15.0)),
-//                                                   //   child: IconButton(
-//                                                   //     icon: Icon(
-//                                                   //         hostel1.favIcon
-//                                                   //             ? Icons.favorite
-//                                                   //             : Icons.thumb_up_alt_rounded,
-//                                                   //         color: hostel1.favIcon
-//                                                   //             ? Colors.red
-//                                                   //             : Colors.white),
-//                                                   //     onPressed: () {
-//                                                   //       setState(() {
-//                                                   //         hostel1.favIcon = !hostel1.favIcon;
-//                                                   //       });
-//                                                   //       /* Add to Favarate */
-//                                                   //     },
-//                                                   //   ),
-//                                                   // ),
-//                                                 ),
-//                                               ),
-//                                             ),
-//                                           );
-//                                         }),
-//                                   );
-//                                 })
-//                                 )
