@@ -61,7 +61,7 @@ class _HostelBookingState extends State<HostelBooking> {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 100),
+              margin: const EdgeInsets.only(top: 20),
               child: FadeAnimation(
                 2,
                 Column(

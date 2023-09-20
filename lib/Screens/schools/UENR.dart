@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 import '../../utils/constants.dart';
 
 import '../../utils/functions/getHostels.dart';
@@ -39,7 +40,7 @@ class _UENRState extends State<UENR> {
           .toList();
     });
   }
- 
+
 //-------------------------------------------------------------
 // dicument IDs
 //-------------------------------------------------------------
@@ -104,8 +105,6 @@ class _UENRState extends State<UENR> {
     await prefs.remove('password');
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     //-------------------------------------------------------------
@@ -136,50 +135,84 @@ class _UENRState extends State<UENR> {
                       ],
                     ),
                     Expanded(child: Container()),
-                    Column(
-                      children: [
-                        ProfilePicture(
-                          name: '$obtuserName',
-                          tooltip: true,
-                          role: '$obtuserCurrentSchool',
-                          radius: 20,
-                          fontsize: 21,
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text('Logout'),
-                                    content: const Text(
-                                        'Are you sure you want to logout?.'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(context),
-                                        child: const Text('Nope'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          getUserLogout();
-                                          Get.to(
-        RegisterUser(),
-        duration: const Duration(seconds: 1),
-        transition: Transition.zoom,
-      );
-                                          
-                                        },
-                                        child: const Text('Yeah'),
-                                      ),
-                                    ],
-                                  );
-                                },
+                    GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Logout'),
+                                content: const Text(
+                                    'Are you sure you want to logout?.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text('Nope'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      getUserLogout();
+                                      Get.to(
+                                        RegisterUser(),
+                                        duration: const Duration(seconds: 1),
+                                        transition: Transition.zoom,
+                                      );
+                                    },
+                                    child: const Text('Yeah'),
+                                  ),
+                                ],
                               );
                             },
-                            child: const Text('Logout')),
-                      ],
-                    ),
+                          );
+                        },
+                        child: const Text('Logout')),
+                    //Expanded(child: Container()),
+
+                    // Column(
+                    //   children: [
+                    //     ProfilePicture(
+                    //       name: '$obtuserName',
+                    //       tooltip: true,
+                    //       role: '$obtuserCurrentSchool',
+                    //       radius: 20,
+                    //       fontsize: 21,
+                    //     ),
+                    //     GestureDetector(
+                    //         onTap: () {
+                    //           showDialog(
+                    //             context: context,
+                    //             builder: (context) {
+                    //               return AlertDialog(
+                    //                 title: const Text('Logout'),
+                    //                 content: const Text(
+                    //                     'Are you sure you want to logout?.'),
+                    //                 actions: [
+                    //                   TextButton(
+                    //                     onPressed: () => Navigator.pop(context),
+                    //                     child: const Text('Nope'),
+                    //                   ),
+                    //                   TextButton(
+                    //                     onPressed: () {
+                    //                       Navigator.pop(context);
+                    //                       getUserLogout();
+                    //                       Get.to(
+                    //                         RegisterUser(),
+                    //                         duration:
+                    //                             const Duration(seconds: 1),
+                    //                         transition: Transition.zoom,
+                    //                       );
+                    //                     },
+                    //                     child: const Text('Yeah'),
+                    //                   ),
+                    //                 ],
+                    //               );
+                    //             },
+                    //           );
+                    //         },
+                    //         child: const Text('Logout')),
+                    //   ],
+                    // ),
                   ],
                 ),
                 const SizedBox(
@@ -198,13 +231,14 @@ class _UENRState extends State<UENR> {
                   child: Center(
                     child: TextField(
                       controller: _searchController,
-                      onChanged: filterHostels, // Call filter method on text change
+                      onChanged:
+                          filterHostels, // Call filter method on text change
                       decoration: InputDecoration(
                           prefixIcon: IconButton(
                             icon: const Icon(Icons.clear),
                             onPressed: () {
                               _searchController.clear();
-                          filterHostels(''); // Clear filter
+                              filterHostels(''); // Clear filter
                             },
                           ),
                           suffixIcon: IconButton(
@@ -214,7 +248,7 @@ class _UENRState extends State<UENR> {
                               filterHostels(_searchController.text);
                             },
                           ),
-                           hintText: 'Lasvegas Hostle',
+                          hintText: 'Lasvegas Hostle',
                           border: InputBorder.none),
                     ),
                   ),
@@ -242,7 +276,7 @@ class _UENRState extends State<UENR> {
                 //-------------------------------------------------------------
                 // This list view shows a list of pupolar hostels
                 //-------------------------------------------------------------
-                 FutureBuilder(
+                FutureBuilder(
                     future: getDocId1(),
                     builder: (context, snapshot) {
                       return SizedBox(
@@ -259,7 +293,7 @@ class _UENRState extends State<UENR> {
                       );
                     }),
                 const SizedBox(height: 15),
-                const Text('Resent', style: AppBlackTextStyle.texth2),
+                const Text('Resent Hostels', style: AppBlackTextStyle.texth2),
                 //-------------------------------------------------------------
                 // this is a list view that shows a list of the resent hostels
                 //-------------------------------------------------------------
@@ -286,7 +320,11 @@ class _UENRState extends State<UENR> {
                         );
                       }
 
-                      return const Text('Loading...');
+                      return Shimmer(
+                        child: Container(
+                          color: Colors.deepPurple,
+                        ),
+                      );
                     },
                   ),
                 )

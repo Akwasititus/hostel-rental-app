@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/constants.dart';
-import 'homestelAreas.dart';
 import 'homestelHousesDesc.dart';
-
-
 
 class HomestelsDetails extends StatelessWidget {
   const HomestelsDetails({super.key});
@@ -56,8 +53,8 @@ class HomestelsDetails extends StatelessWidget {
                               'landlordName': hostelsArguments['landlordName'],
                               'roomType': hostelsArguments['roomType'],
                               'roomAmount': hostelsArguments['roomAmount'],
-                              'homestelMinWalk': hostelsArguments['homestelMinWalk'],
-                              
+                              'homestelMinWalk':
+                                  hostelsArguments['homestelMinWalk'],
                             },
                             duration: const Duration(seconds: 1),
                             transition: Transition.native);
@@ -71,9 +68,7 @@ class HomestelsDetails extends StatelessWidget {
                             child: ListTile(
                                 title: ClipRRect(
                                   borderRadius: BorderRadius.circular(7),
-                                  child: Image.asset(
-                                    roomImg
-                                  ),
+                                  child: Image.asset(roomImg),
                                 ),
                                 subtitle: Container(
                                   height: 50,
@@ -97,7 +92,7 @@ class HomestelsDetails extends StatelessWidget {
                                                   color: Colors.white
                                                       .withOpacity(0.5)),
                                             ),
-                                             Text(landlordName,
+                                            Text(landlordName,
                                                 style:
                                                     AppWhiteTextStyle.texth1),
                                           ],
@@ -112,7 +107,7 @@ class HomestelsDetails extends StatelessWidget {
                                                   color: Colors.white
                                                       .withOpacity(0.5)),
                                             ),
-                                             Text(roomType,
+                                            Text(roomType,
                                                 style:
                                                     AppWhiteTextStyle.texth1),
                                           ],
@@ -126,7 +121,7 @@ class HomestelsDetails extends StatelessWidget {
                                                   color: Colors.white
                                                       .withOpacity(0.5)),
                                             ),
-                                             Text(roomAmount,
+                                            Text(roomAmount,
                                                 style:
                                                     AppWhiteTextStyle.texth1),
                                           ],
@@ -147,44 +142,3 @@ class HomestelsDetails extends StatelessWidget {
 
 
 
-// class HomestelDesc {
-//   final String landlordName;
-//   final String houseLocation;
-//   final String roomAmount;
-//   final String houseImg;
-
-//   HomestelDesc({
-//     required this.landlordName,
-//     required this.houseLocation,
-//     required this.roomAmount,
-//     required this.houseImg,
-//   });
-// }
-
-// List<HomestelDesc> getHomestelDesc = [
-//   HomestelDesc(
-//       houseLocation: 'Fiapre',
-//       landlordName: 'Dr. Patrick Mensah',
-//       roomAmount: '2,500',
-//       houseImg: 'assets/images/Erichostel.jpg'),
-//       HomestelDesc(
-//       houseLocation: 'Fiapre',
-//       landlordName: 'Dr. Patrick Mensah',
-//       roomAmount: '2,500',
-//       houseImg: 'assets/images/Erichostel.jpg'),
-//       HomestelDesc(
-//       houseLocation: 'Fiapre',
-//       landlordName: 'Dr. Patrick Mensah',
-//       roomAmount: '2,500',
-//       houseImg: 'assets/images/Erichostel.jpg'),
-//       HomestelDesc(
-//       houseLocation: 'Fiapre',
-//       landlordName: 'Dr. Patrick Mensah',
-//       roomAmount: '2,500',
-//       houseImg: 'assets/images/Erichostel.jpg'),
-//       HomestelDesc(
-//       houseLocation: 'Fiapre',
-//       landlordName: 'Dr. Patrick Mensah',
-//       roomAmount: '2,500',
-//       houseImg: 'assets/images/Erichostel.jpg'),
-// ];

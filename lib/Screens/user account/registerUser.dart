@@ -59,7 +59,7 @@ class _RegisterUserState extends State<RegisterUser> {
                     10,
                     Column(
                       children: [
-                        Image.asset('assets/images/logo.png'),
+                        Image.asset('assets/images/logo.png',height: 100),
                         const Text(
                           "Welcome to MyHostel+",
                           style: TextStyle(

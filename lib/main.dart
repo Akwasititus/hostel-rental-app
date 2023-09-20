@@ -31,8 +31,9 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
-      title: 'Welcome to myHostel+',
+      title: 'myHostel+',
       useInheritedMediaQuery: true,
+      debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: ThemeData(
@@ -78,7 +79,7 @@ class _CheckingPointState extends State<CheckingPoint> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Center(child: const CircularProgressIndicator());
           }
-          return finalEmail != null
+          return finalEmail == null
               ? const RegisterUser()
               : const NavigationHome();
         },

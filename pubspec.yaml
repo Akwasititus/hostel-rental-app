@@ -53,6 +53,7 @@ dependencies:
   firebase_messaging: ^14.6.5
   shared_preferences: ^2.2.0
   device_preview: ^1.1.0
+  shimmer_animation: ^2.1.0+1
 
   
 dev_dependencies:

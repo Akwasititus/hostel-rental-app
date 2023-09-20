@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 import '../../Screens/detailPage.dart';
 
 import '../constants.dart';
@@ -17,6 +18,13 @@ class GetHostels extends StatelessWidget {
     CollectionReference hostels =
         FirebaseFirestore.instance.collection('addHostel');
 
+    List imageUrls = [
+      'assets/images/hostel11.jpg',
+      'assets/images/hostel22.jpg',
+      'assets/images/hostel33.jpeg',
+      'assets/images/hostel44.jpeg',
+    ];
+
     return FutureBuilder<DocumentSnapshot>(
         future: hostels.doc(documentId).get(),
         builder: (context, snapshot) {
@@ -24,18 +32,9 @@ class GetHostels extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
 
-            List imageUrls = [
-              'assets/images/hostel11.jpg',
-              'assets/images/hostel22.jpg',
-              'assets/images/hostel33.jpeg',
-              'assets/images/hostel44.jpeg',
-            ];
-
-            final hostel = imageUrls;
-
             return GestureDetector(
               onTap: () {
-                Get.to( Detail(),
+                Get.to(Detail(),
                     arguments: {
                       //-------------------------------------------------
                       // these are argument from the model page that are being passed to the detailed screen
@@ -121,10 +120,12 @@ class GetHostels extends StatelessWidget {
                 ),
               ),
             );
-
-            
           }
-          return const Text('loading...');
+          return Shimmer(
+            child: Container(
+              color: Colors.deepPurple,
+            ),
+          );
         });
   }
 }
