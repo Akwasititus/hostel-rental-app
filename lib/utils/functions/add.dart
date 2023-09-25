@@ -25,10 +25,10 @@ class StoreData {
     required String agentEmail,
 
     //room type
-     double? oneinaRoom,
-     double? twoInaRoom,
-     double? threeinaRoom,
-     double? fourinaRoom,
+     int? oneinaRoom,
+     int? twoInaRoom,
+     int? threeinaRoom,
+     int? fourinaRoom,
      
     
     required Uint8List file,

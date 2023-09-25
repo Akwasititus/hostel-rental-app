@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../admin_page/fade_animation.dart';
 import '../../utils/widgets/textFields.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HostelBooking extends StatefulWidget {
   @override
@@ -12,6 +13,30 @@ class HostelBooking extends StatefulWidget {
 }
 
 class _HostelBookingState extends State<HostelBooking> {
+
+
+
+  //-----------------------------------------------
+  // uploading data to firebase
+  //-----------------------------------------------
+
+  Future<void> uploadDataToFirebase(String hostelName, int hostelAmount, int personsInRoom, String agentEmail, String name, String address, String contact, String comment) async {
+  try {
+    await FirebaseFirestore.instance.collection('hostelBookings').add({
+      'hostelName': hostelName,
+      'hostelAmount': hostelAmount,
+      'personsInRoom': personsInRoom,
+      'agentEmail': agentEmail,
+      'name': name,
+      'address': address,
+      'contact': contact,
+      'comment': comment,
+    });
+  } catch (e) {
+    print('Error uploading data to Firebase: $e');
+  }
+}
+
   //-------------------------------------------------
   // a simple text editing editing controllers
   //---------------------------------------------------
@@ -236,6 +261,8 @@ class _HostelBookingState extends State<HostelBooking> {
                             _address = _homeaddressController.text;
                             _contact = _contactNumberController.text;
                             _comment = _commentController.text;
+
+                            uploadDataToFirebase(hostelName, hostelAmount, personsInRoom, agentEmail, _name, _address, _contact, _comment);
                             //-------------------------------------------------
                             // this has the users selection and the users details to be displayed on the email
                             //---------------------------------------------------

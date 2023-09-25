@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:get/get.dart';
+import 'adminCheckPoint.dart';
 import 'adminUpload.dart';
 import 'fade_animation.dart';
+
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({Key? key}) : super(key: key);
@@ -93,7 +95,7 @@ class _AdminLoginState extends State<AdminLogin> {
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
         // Navigate to the next screen or perform other actions upon successful login.
-        Get.off(const AdminUpload());
+        Get.off(const AdminCheckPoint());
       } else {
         showDialog(
           context: context,
@@ -357,7 +359,9 @@ class _AdminLoginState extends State<AdminLogin> {
                                           child: FadeAnimation(
                                             2,
                                             ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                               
+                                              },
                                               style: ElevatedButton.styleFrom(
                                                   onPrimary: Colors.purpleAccent,
                                                   shadowColor:

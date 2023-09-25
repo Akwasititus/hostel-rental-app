@@ -123,7 +123,7 @@ class GetHostels extends StatelessWidget {
           }
           return Shimmer(
             child: Container(
-              color: Colors.deepPurple,
+              color: Colors.blue,
             ),
           );
         });

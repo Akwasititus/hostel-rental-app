@@ -72,11 +72,18 @@ class _AdminUploadState extends State<AdminUpload> {
         agentEmail: agentEmailController,
         
 
+        // // room type
+        // oneinaRoom: oneinaRoomController.,
+        // twoInaRoom: twoInaRoomController,
+        // threeinaRoom: threeinaRoomController,
+        // fourinaRoom: fourinaRoomController,
+
         // room type
-        oneinaRoom: double.parse(oneinaRoomController),
-        twoInaRoom: double.parse(twoInaRoomController),
-        threeinaRoom: double.parse(threeinaRoomController),
-        fourinaRoom: double.parse(fourinaRoomController),
+oneinaRoom: int.tryParse(oneinaRoomController) ?? 0,
+twoInaRoom: int.tryParse(twoInaRoomController) ?? 0,
+threeinaRoom: int.tryParse(threeinaRoomController) ?? 0,
+fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
+
         
         file: _image!);
   }

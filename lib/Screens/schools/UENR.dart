@@ -49,14 +49,23 @@ class _UENRState extends State<UENR> {
 //-------------------------------------------------------------
 // getDocs Ids1
 //-------------------------------------------------------------
-  Future getDocId1() async {
+  /*Future getDocId1() async {
     await FirebaseFirestore.instance
         .collection('addHostel')
         .get()
         .then((snapshot) => snapshot.docs.forEach((docment) {
               docIDs1.add(docment.reference.id);
             }));
-  }
+  }*/
+
+  Future<List<String>> getDocId1() async {
+  QuerySnapshot snapshot = await FirebaseFirestore.instance
+      .collection('addHostel')
+      .get();
+
+  return snapshot.docs.map((docment) => docment.reference.id).toList();
+}
+
 
 //-------------------------------------------------------------
   // dicument IDs2
@@ -276,12 +285,12 @@ class _UENRState extends State<UENR> {
                 //-------------------------------------------------------------
                 // This list view shows a list of pupolar hostels
                 //-------------------------------------------------------------
-                FutureBuilder(
-                    future: getDocId1(),
-                    builder: (context, snapshot) {
-                      return SizedBox(
-                        height: 250,
-                        child: ListView.builder(
+                /*SizedBox(
+                  height: 250,
+                  child: FutureBuilder(
+                      future: getDocId1(),
+                      builder: (context, snapshot) {
+                        return ListView.builder(
                           itemCount: docIDs1.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
@@ -289,9 +298,38 @@ class _UENRState extends State<UENR> {
                                 padding: const EdgeInsets.all(7.0),
                                 child: GetHostels(documentId: docIDs1[index]));
                           },
-                        ),
+                        );
+                      }),
+                ),*/
+
+                SizedBox(
+                  height: 300,
+                  child: FutureBuilder<List<String>>(
+                  future: getDocId1(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator()); // Show a loading indicator.
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(child: Text('No data available. ${snapshot.hasData}'));
+                    } else {
+                      List<String>? docIDs1 = snapshot.data;
+                      return ListView.builder(
+                        itemCount: docIDs1!.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(7.0),
+                            child: GetHostels(documentId: docIDs1[index]),
+                          );
+                        },
                       );
-                    }),
+                    }
+                  },
+                ),
+                ),
+
                 const SizedBox(height: 15),
                 const Text('Resent Hostels', style: AppBlackTextStyle.texth2),
                 //-------------------------------------------------------------
