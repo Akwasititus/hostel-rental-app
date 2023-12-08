@@ -55,8 +55,7 @@ class _RegisterUserState extends State<RegisterUser> {
             children: [
               Container(
                   margin: const EdgeInsets.only(top: 100),
-                  child: FadeAnimation(
-                    10,
+                  child: 
                     Column(
                       children: [
                         Image.asset('assets/images/logo.png',height: 100),
@@ -71,7 +70,7 @@ class _RegisterUserState extends State<RegisterUser> {
                         ),
                       ],
                     ),
-                  )),
+                  ),
               Expanded(
                 child: Container(
                     width: double.infinity,
@@ -92,8 +91,7 @@ class _RegisterUserState extends State<RegisterUser> {
                               alignment: Alignment.topLeft,
                               margin:
                                   const EdgeInsets.only(left: 22, bottom: 20),
-                              child: const FadeAnimation(
-                                10,
+                              child:
                                 Text(
                                   "A free booking Hostel for students",
                                   textAlign: TextAlign.center,
@@ -103,9 +101,8 @@ class _RegisterUserState extends State<RegisterUser> {
                                       letterSpacing: 1.5,
                                       fontFamily: "Lobster"),
                                 ),
-                              )),
-                          FadeAnimation(
-                            2,
+                              ),
+                          
                             Container(
                                 width: double.infinity,
                                 height: 70,
@@ -153,9 +150,8 @@ class _RegisterUserState extends State<RegisterUser> {
                                     ),
                                   ],
                                 )),
-                          ),
-                          FadeAnimation(
-                            3,
+                          
+                          
                             Container(
                                 width: double.infinity,
                                 height: 70,
@@ -205,9 +201,8 @@ class _RegisterUserState extends State<RegisterUser> {
                                     ),
                                   ],
                                 )),
-                          ),
-                          FadeAnimation(
-                            4,
+                          
+                          
                             Container(
                                 width: double.infinity,
                                 height: 70,
@@ -255,9 +250,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                     ),
                                   ],
                                 )),
-                          ),
-                          FadeAnimation(
-                            5,
+                         
                             Container(
                                 width: double.infinity,
                                 height: 70,
@@ -305,14 +298,13 @@ class _RegisterUserState extends State<RegisterUser> {
                                     ),
                                   ],
                                 )),
-                          ),
+                          
                           const SizedBox(
                             height: 20,
                           ),
                           Column(
                             children: [
-                              FadeAnimation(
-                                8,
+                              
                                 ElevatedButton(
                                   onPressed: setData,
                                   style: ElevatedButton.styleFrom(
@@ -335,8 +327,7 @@ class _RegisterUserState extends State<RegisterUser> {
                                       width: 200,
                                       height: 50,
                                       alignment: Alignment.center,
-                                      child: const FadeAnimation(
-                                        2,
+                                      child: 
                                         Text(
                                           'Register',
                                           style: TextStyle(
@@ -347,8 +338,8 @@ class _RegisterUserState extends State<RegisterUser> {
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                
+                              
                             ],
                           ),
                           const SizedBox(height: 20)

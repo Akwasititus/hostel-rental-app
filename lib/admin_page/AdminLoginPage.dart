@@ -149,11 +149,11 @@ class _AdminLoginState extends State<AdminLogin> {
                   children: [
                    BackButton(),
                    
-                    FadeAnimation(7, Image.asset('assets/images/logo.png',height: 100)),
+                    Image.asset('assets/images/logo.png',height: 100),
                     Container(
                         
-                        child: const FadeAnimation(
-                          3,
+                        child: 
+                          
                           Text(
                             "Agent",
                             style: TextStyle(
@@ -163,7 +163,7 @@ class _AdminLoginState extends State<AdminLogin> {
                               letterSpacing: 3,
                             ),
                           ),
-                        )),
+                        ),
                     Expanded(
                       child: Container(
                           width: double.infinity,
@@ -184,8 +184,8 @@ class _AdminLoginState extends State<AdminLogin> {
                                     alignment: Alignment.topLeft,
                                     margin: const EdgeInsets.only(
                                         left: 22, bottom: 20),
-                                    child: const FadeAnimation(
-                                      2,
+                                    child: 
+                                    
                                       Text(
                                         "Agent Login",
                                         style: TextStyle(
@@ -194,9 +194,8 @@ class _AdminLoginState extends State<AdminLogin> {
                                             letterSpacing: 2,
                                             fontFamily: "Lobster"),
                                       ),
-                                    )),
-                                FadeAnimation(
-                                  2,
+                                    ),
+                                
                                   Container(
                                       width: double.infinity,
                                       height: 70,
@@ -238,9 +237,8 @@ class _AdminLoginState extends State<AdminLogin> {
                                           ),
                                         ],
                                       )),
-                                ),
-                                FadeAnimation(
-                                  2,
+                                
+                                
                                   Container(
                                       width: double.infinity,
                                       height: 70,
@@ -284,14 +282,13 @@ class _AdminLoginState extends State<AdminLogin> {
                                           ),
                                         ],
                                       )),
-                                ),
+                                
                                 const SizedBox(
                                   height: 20,
                                 ),
                                 Column(
                                   children: [
-                                    FadeAnimation(
-                                      10,
+                                    
                                       ElevatedButton(
                                         onPressed: _signInWithEmailAndPassword,
                                         style: ElevatedButton.styleFrom(
@@ -325,7 +322,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    
                                     const SizedBox(height: 25),
                                     GestureDetector(
                                       onTap: _resetPassword,
@@ -338,8 +335,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                     const SizedBox(height: 60),
                                     Column(
                                       children: [
-                                        FadeAnimation(
-                                          2,
+                                        
                                           Container(
                                               width: double.infinity,
                                               height: 30,
@@ -352,12 +348,12 @@ class _AdminLoginState extends State<AdminLogin> {
                                                     color: Colors.black54,
                                                     fontSize: 15),
                                               )),
-                                        ),
+                                        
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
-                                          child: FadeAnimation(
-                                            2,
+                                          child: 
+                                          
                                             ElevatedButton(
                                               onPressed: () {
                                                
@@ -397,7 +393,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                                 ),
                                               ),
                                             ),
-                                          ),
+                                          
                                         ),
                                       ],
                                     )

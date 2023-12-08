@@ -40,7 +40,6 @@ dependencies:
   flutter_profile_picture: ^2.0.0
   carousel_slider: ^4.2.1
   get: ^4.6.5
-  simple_animations: ^4.0.0 
   flutter_animated_dialog: ^2.0.1
   flutter_mailer: ^2.1.1
   image_picker: ^0.8.5+3
@@ -54,6 +53,7 @@ dependencies:
   shared_preferences: ^2.2.0
   device_preview: ^1.1.0
   shimmer_animation: ^2.1.0+1
+  simple_animations: ^5.0.2
 
   
 dev_dependencies:

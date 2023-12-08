@@ -18,8 +18,7 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeAnimation(
-      2,
+    return 
       Container(
         width: double.infinity,
         height: height,
@@ -57,7 +56,7 @@ class MyTextField extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      
     );
   }
 }

@@ -97,8 +97,7 @@ class AdminCheckPoint extends StatelessWidget {
               onTap: () {
                 Get.to(() => AdminUpload());
               },
-              child: FadeAnimation(
-                2,
+              child: 
                 SizedBox(
                   height: 150,
                   child: Card(
@@ -115,14 +114,13 @@ class AdminCheckPoint extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            
             SizedBox(height: 20),
             InkWell(
               onTap: () {
                 Get.to(() => HostelBookingResult());
               },
-              child: FadeAnimation(
-                4,
+              child: 
                 SizedBox(
                   height: 150,
                   child: Card(
@@ -139,7 +137,7 @@ class AdminCheckPoint extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            
           ],
         ),
       ),

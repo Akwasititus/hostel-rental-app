@@ -87,8 +87,7 @@ class _HostelBookingState extends State<HostelBooking> {
           children: [
             Container(
               margin: const EdgeInsets.only(top: 20),
-              child: FadeAnimation(
-                2,
+              child: 
                 Column(
                   children: const [
                     Text(
@@ -132,7 +131,7 @@ class _HostelBookingState extends State<HostelBooking> {
                   ],
                 ),
               ),
-            ),
+            
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -148,8 +147,7 @@ class _HostelBookingState extends State<HostelBooking> {
                   child: Column(
                     children: [
                       const SizedBox(height: 50),
-                      FadeAnimation(
-                        2,
+                      
                         Container(
                           alignment: Alignment.topLeft,
                           margin: const EdgeInsets.only(left: 22, bottom: 20),
@@ -164,7 +162,7 @@ class _HostelBookingState extends State<HostelBooking> {
                             ),
                           ),
                         ),
-                      ),
+                      
                       //-------------------------------------------------
                       // Name text field
                       //---------------------------------------------------
@@ -199,8 +197,7 @@ class _HostelBookingState extends State<HostelBooking> {
                       // comment text field
                       //---------------------------------------------------
 
-                      FadeAnimation(
-                        2,
+                      
                         Container(
                           width: double.infinity,
                           height: 130,
@@ -251,10 +248,9 @@ class _HostelBookingState extends State<HostelBooking> {
                             ],
                           ),
                         ),
-                      ),
+                      
                       const SizedBox(height: 10),
-                      FadeAnimation(
-                        2,
+                      
                         ElevatedButton(
                           onPressed: () {
                             _name = _nameController.text;
@@ -335,7 +331,7 @@ ________________________\n
                             ),
                           ),
                         ),
-                      ),
+                      
                       const SizedBox(height: 20),
                     ],
                   ),

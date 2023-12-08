@@ -115,11 +115,10 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
               Align(
                       alignment: Alignment.topRight,
                       child: BackButton()),
-                    FadeAnimation(10, Image.asset('assets/images/logo.png',height: 50)),
+                     Image.asset('assets/images/logo.png',height: 50),
               Container(
                   
-                  child: const FadeAnimation(
-                    5,
+                  child:
                     Text(
                       "Upload your data to display on the main page",
                       textAlign: TextAlign.center,
@@ -130,7 +129,7 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                         letterSpacing: 2,
                       ),
                     ),
-                  )),
+                  ),
               Expanded(
                 child: Container(
                     width: double.infinity,
@@ -150,8 +149,7 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                               // color: Colors.red,
                               alignment: Alignment.topLeft,
                               margin: const EdgeInsets.only(left: 22, bottom: 20),
-                              child: const FadeAnimation(
-                                2,
+                              child: 
                                 Center(
                                   child: Text(
                                     "upload data Here",
@@ -162,32 +160,29 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                                         fontFamily: "Lobster"),
                                   ),
                                 ),
-                              )),
-                          FadeAnimation(
-                            5,
+                              ),
+                          
                              MyTextField(
                               hintext: 'Hostel Name',
                               iconData: Icons.home,
                               controller: _hostelNameController,
                               height: 70, keyboardType: TextInputType.text,
                             ),
-                          ),
-                          FadeAnimation(
-                            7, MyTextField(
+                          
+                           MyTextField(
                               hintext: 'Hostel Location',
                               iconData: Icons.room_outlined,
                               controller: _hostelLocationController,
                               height: 70, keyboardType: TextInputType.text,
                             ),
-                          ),
-                          FadeAnimation(
-                            9, MyTextField(
+                          
+                           MyTextField(
                               hintext: 'Agent Email',
                               iconData: Icons.email_rounded,
                               controller: _agentEmailController,
                               height: 70, keyboardType: TextInputType.emailAddress,
                             ),
-                          ),
+                          
     
                           //Room Types
                           const Text('Enter Fixed Amount for the Room Types'),
@@ -215,8 +210,7 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                             controller: _fourinaRoomController,
                             height: 70,keyboardType: TextInputType.number,
                           ),
-                          FadeAnimation(
-                            2,
+                          
                             Container(
                                 width: double.infinity,
                                 height: 130,
@@ -257,9 +251,7 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                                     ),
                                   ],
                                 )),
-                          ),
-                          FadeAnimation(
-                            2,
+                         
                             Container(
                                 width: double.infinity,
                                 height: 130,
@@ -343,12 +335,11 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                                     ),
                                   ],
                                 )),
-                          ),
+                          
                           const SizedBox(
                             height: 10,
                           ),
-                          FadeAnimation(
-                            2,
+                          
                             ElevatedButton(
                               onPressed: () {
                                 /// function to save the data to firestore
@@ -401,7 +392,7 @@ fourinaRoom: int.tryParse(fourinaRoomController) ?? 0,
                                 ),
                               ),
                             ),
-                          ),
+                          
                           const SizedBox(height: 20),
                         ],
                       ),

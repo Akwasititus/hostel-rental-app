@@ -50,8 +50,7 @@ class HomestelHouseDesc extends StatelessWidget {
                   //-------------------------------------------------
                   // showing a brief discription on selected hostel
                   //---------------------------------------------------
-                  FadeAnimation(
-                    2, ReadMoreText(
+                   ReadMoreText(
                       HostelsDescription.samuelHostel,
                       trimLines: 3,
                       colorClickableText: Colors.pink,
@@ -64,7 +63,7 @@ class HomestelHouseDesc extends StatelessWidget {
                       style: AppBlackTextStyle.texth3,
                       textAlign: TextAlign.justify,
                     ),
-                  ),
+                  
                   const SizedBox(height: 20),
                   GestureDetector(
                       onTap: () {
@@ -150,23 +149,22 @@ ________________________\n
                           },
                         );
                       },
-                      child: FadeAnimation( 5,  AgentButton(buttonName: 'Agent'))),
+                      child:  AgentButton(buttonName: 'Agent')),
                   const SizedBox(
                     height: 10.0,
                   ),
-                  FadeAnimation(
-                    10,  AgentButton(
+                    AgentButton(
                       buttonName: 'Call Agent',
                     ),
-                  ),
+                  
                   const SizedBox(
                     height: 10.0,
                   ),
-                  FadeAnimation(15,
+                  
                      const AgentButton(
                       buttonName: 'Chat with Agent',
                     ),
-                  ),
+                  
                 ],
               ),
             ),
